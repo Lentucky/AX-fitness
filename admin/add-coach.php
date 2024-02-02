@@ -22,6 +22,7 @@ if(isset($_POST["submit"])){
 
     mysqli_query($conn,$query);
     echo "<script> alert('Registration Successful'); </script>";
+    header("location: coach.php");
 
 }
 
