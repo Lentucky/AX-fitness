@@ -34,13 +34,13 @@
       <div class="collapse navbar-collapse justify-content-left" id="navbarNav">
       <ul class="navbar-nav">
           <li class="nav-item ">
-          <a class="nav-link" aria-current="page" href="client.php">Clients</a>
+          <a class="nav-link" aria-current="page" href="profile.php">Profile</a>
           </li>
           <li class="nav-item ">
-          <a class="nav-link " aria-current="page" href="coach.php">Coaches</a>
+          <a class="nav-link " aria-current="page" href="client.php">Clients</a>
           </li>
           <li class="nav-item ">
-          <a class="nav-link " aria-current="page" href="plan.php">Plans</a>
+          <a class="nav-link " aria-current="page" href="coach.php">Coach</a>
           </li>
           <li class="nav-item me-5 ">
           <a class="nav-link " aria-current="page" href="logout.php">Logout</a>

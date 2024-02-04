@@ -1,25 +1,29 @@
 <?php 
-include('partials/menu.php');
+include('partials/menu.php'); 
  ?>
 <div class="container">
-    <h1 class="white-text">Coaches</h1>
+    <h1 class="white-text">Clients</h1>
+
+    <br>
 
     <table class="table table-striped table-dark">
     <thead>
         <tr>
         <th scope="col">Name</th>
+        <th scope="col">Coach</th>
         <th scope="col">E-mail</th>
-        <th scope="col">Phone no.</th>
+        <th scope="col">Phone No.</th>
         <th scope="col">Branch</th>
         <th scope="col">Gender</th>
-        <th scope="col"></th>
+        <th scope="col">Membership</th>
+        <th scope="col">Date Due</th>
         <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         <?php 
             //Query to Get all Admin
-            $sql = "SELECT * FROM coach";
+            $sql = "SELECT * FROM customer WHERE Coach_ID=0";
             //Execute the Query
             $res = mysqli_query($conn, $sql);
 
@@ -39,34 +43,47 @@ include('partials/menu.php');
                         //And while loop will run as long as we have data in database
 
                         //Get individual DAta
-                        $id=$rows['Coach_ID'];
-                        $coach_name=$rows['Coach_name'];
-                        $branch_id=$rows['Branch_ID'];
-                        $coach_email=$rows['Coach_email'];
-                        $coach_no=$rows['Coach_no'];
-                        $coach_gender=$rows['Coach_gender'];
+                        $customer_id=$rows['Customer_ID'];
+                        $coach=$rows['Coach_ID'];
+                        $name=$rows['Customer_name'];
+                        $branch=$rows['Branch_ID'];
+                        $email=$rows['Customer_email'];
+                        $number=$rows['Customer_no'];
+                        $gender=$rows['Customer_gender'];
+                        $plan=$rows['Customer_plan'];
+                        $due=$rows['Date_due'];
+
                         //Display the Values in our Table
                         ?>
+                        
                         <tr>
-                            <td><?php echo $coach_name; ?></td>
-                            <td><?php echo $coach_email; ?></td>
-                            <td><?php echo $coach_no; ?></td>
-                            <td><?php echo $branch_id; ?></td>
-                            <td><?php echo $coach_gender; ?></td>
+                            <td><?php echo $name; ?></td>
+                            <td><?php echo $email; ?></td>
+                            <td><?php echo $number; ?></td>
+                            <td><?php echo $branch; ?></td>
+                            <td><?php echo $gender; ?></td>
+                            <td><?php echo $plan; ?></td>
+                            <td><?php echo $due; ?></td>
+                            <td>
+                                <td><a class="btn btn-danger" href="add-client.php?id=<?php echo $customer_id; ?>" role="button">Add Client</a></td>
+                            </td>
                         </tr>
+
                         <?php
+
                     }
                 }
                 else
                 {
+                    echo "<h2 class='white-text'> You have no current clients </h2>";
                     //We Do not Have Data in Database
                 }
             }
+
         ?>
     </tbody>
     </table>
 </div>
-
 <?php 
 include('partials/footer.php'); 
 

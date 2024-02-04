@@ -2,12 +2,13 @@
 
     //Include constants.php file here
     include('../config/constants.php');
+    include('partials/login-check.php'); 
 
     // 1. get the ID of Admin to be deleted
-    $id = $_GET['id'];
+    $customer_id = $_GET['id'];
 
     //2. Create SQL Query to Delete Admin
-    $sql = "DELETE FROM coach WHERE Coach_ID=$id";
+    $sql = "UPDATE customer SET Coach_ID=0 WHERE Customer_ID=$customer_id";
 
     //Execute the Query
     $res = mysqli_query($conn, $sql);
@@ -16,18 +17,16 @@
     if($res==true)
     {
         //Query Executed Successully and Admin Deleted
-        //echo "Admin Deleted";
         //Create SEssion Variable to Display Message
-        $_SESSION['delete'] = "<div class='success'>Admin Deleted Successfully.</div>";
+        $_SESSION['update-remove'] = "<div class='success'>Removed Successfully.</div>";
         //Redirect to Manage Admin Page
-        header('location: coach.php');
+        header('location: index.php');
     }
     else
     {
         //Failed to Delete Admin
-        //echo "Failed to Delete Admin";
-        $_SESSION['delete'] = "<div class='error'>Failed to Delete Admin. Try Again Later.</div>";
-        header('location: coach.php');
+        $_SESSION['update-remove'] = "<div class='error'>Failed. Try Again Later.</div>";
+        header('location: index.php');
     }
 
     //3. Redirect to Manage Admin page with message (success/error)

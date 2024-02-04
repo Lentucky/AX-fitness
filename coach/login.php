@@ -5,13 +5,13 @@ include('../config/constants.php');
 session_start();
 
 if(isset($_POST["submit"])){
-  $username = $_POST["username"];
+  $email = $_POST["email"];
   $password = $_POST["password"];
-  $result = mysqli_query($conn, "SELECT * FROM admins WHERE admin_name = '$username' ");
+  $result = mysqli_query($conn, "SELECT * FROM coach WHERE Coach_email = '$email' ");
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
     if($password == $row["password"]){
-      $_SESSION["admin"] = $username;
+      $_SESSION["coach"] = $row["Coach_ID"];
       header("Location: index.php");  
     }
     else{
@@ -56,7 +56,7 @@ if(isset($_POST["submit"])){
 
           <div class="form-group">
             <label for="exampleInputEmail1">E-mail</label>
-            <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="text" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
           </div>
 
           <div class="form-group">
