@@ -1,0 +1,40 @@
+  if(isset($_POST["submit"])){
+    $name = $_POST["first"] . " " . $_POST["last"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+
+    $coach = 0;
+  
+    $password = $_POST["password"];
+    $confirmpassword = $_POST["confirmpassword"];
+
+    $branch = $_POST["selected-branch"];
+    $customerplan = $_POST["Customer_plan"];
+    $selectedGender = $_POST["gender"];
+    $date_due = date('Y-m-d', strtotime('+30 days'));
+    $duplicate = mysqli_query($conn, "SELECT * FROM customer WHERE Customer_name = '$name' OR Customer_email = '$email'");
+    if(mysqli_num_rows($duplicate) > 0){
+      echo "<script> alert('Name or E-mail is already taken'); </script>";
+    }
+    else{
+      if($_POST["password"] == $_POST["confirmpassword"]){
+        $query = "INSERT INTO customer SET 
+                Customer_name='$name',
+                Customer_email='$email',
+                Coach_ID = '$coach',
+                Customer_no='$phone',
+                branch_ID='$branch',
+                Customer_gender='$selectedGender',
+                Customer_plan = '$customerplan',
+                Date_due = '$date_due',
+                password='$password'
+          ";
+
+          mysqli_query($conn,$query);
+          echo "<script> alert('Registration Successful'); </script>";
+      }
+      else{
+        echo "<script> alert('Password doesn't match'); </script>";
+      }
+    }
+  }

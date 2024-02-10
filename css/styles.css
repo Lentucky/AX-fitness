@@ -6,3 +6,8 @@ html,body{
 
     background: #444444;
 }
+
+/* sa register to wag nyo pakielaman */
+#regiration_form fieldset:not(:first-of-type) {
+    display: none;
+}
