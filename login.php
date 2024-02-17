@@ -63,6 +63,8 @@ if(isset($_POST["submit"])){
           <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
             <br>
           <small id="emailHelp" class="form-text text-muted mt-3">Don't have an account yet? <a href="register.php">Register</a>.</small>
+          <br>
+          <small id="emailHelp" class="form-text text-muted mt-3">Are you a coach? <a href="coach/login.php">login here</a>.</small>
         </form>
     </div>
 </div>

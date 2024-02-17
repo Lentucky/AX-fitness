@@ -16,11 +16,9 @@ if(isset($_POST["submit"])){
   $confirmpassword = $_POST["confirmpassword"];
 
   $branch = $_POST["selected-branch"];
-  $customerplan = $_POST["Customer_plan"];
+  // $customerplan = $_POST["Customer_plan"];
   $selectedGender = $_POST["gender"];
-
   $date_due = date('Y-m-d', strtotime('+30 days'));
-
   $duplicate = mysqli_query($conn, "SELECT * FROM customer WHERE Customer_name = '$name' OR Customer_email = '$email'");
   if(mysqli_num_rows($duplicate) > 0){
     echo "<script> alert('Name or E-mail is already taken'); </script>";
@@ -54,16 +52,20 @@ if(isset($_POST["submit"])){
   <!-- first page -->
   <fieldset>
     <div class="form-group">
-        <label for="Customerplan">Customer Plan</label>
-        <select class="form-control" id="Customer_plan" name="Customer_plan">
-          <option value="Monthly">Monthly</option>
-          <option value="Trimonthly">Tri-Monthly</option>
-          <option value="Yearly">Yearly</option>
-        </select>
+        <!-- <label for="Customerplan">Customer Plan</label>
+        <select class="form-control" id="Customerplan" name="Customer_plan">
+          <option value="Simple">Simple</option>
+          <option value="Assisted">Assisted</option>
+        </select> -->
+        <input type="button" id="option1" name="next" class="next btn btn-info" value="Next" onclick="sendChoice('Monthly')">Monthly</button>
+        <input type="button" id="option2" name="next" class="next btn btn-info" value="Next" onclick="sendChoice('Trimonthly')">Tri-Monthly</button>
+        <input type="button" id="option3" name="next" class="next btn btn-info" value="Next" onclick="sendChoice('Yearly')">Yearly</button>
     </div>
 
+    <!-- Hidden input to hold the selected choice -->
+    <input type="hidden" id="selectedChoice" name="choice" value="">
 
-    <input type="button" name="next" class="next btn btn-info" value="Next" />
+    <!-- <input type="button" name="next" class="next btn btn-info" onclick="displayAnswer()" value="Next" /> -->
   </fieldset>
   <!-- second page -->
   <fieldset>
@@ -84,7 +86,7 @@ if(isset($_POST["submit"])){
 
       <div class="form-group">
         <label for="phone">Enter a phone number:</label>
-        <input type="tel" id="phone" name="phone" placeholder="0900 000 0000" pattern="^09[0-9]{9}$" required>
+        <input type="tel" id="phone" name="phone" placeholder="63 000 000 0000" pattern="^[0-9]{11}$" required>
       </div>
 
       <div class="form-group">
@@ -129,13 +131,12 @@ if(isset($_POST["submit"])){
 <?php include('partials-front/footer.php'); ?>
 
 <script type="text/javascript">
-      // Get the selectedValue from the URL parameters
-      const urlParams = new URLSearchParams(window.location.search);
-    const selectedValue = urlParams.get('selectedValue');
+ function submitChoice(choice) {
+      // Set the selected choice in the hidden input
+      document.getElementById('selectedChoice').value = choice;
 
-    // Set the selected value in the <select> element
-    if (selectedValue) {
-      document.getElementById('Customer_plan').value = selectedValue;
+      // Submit the form
+      $('#choiceForm').submit();
     }
 
 $(document).ready(function(){

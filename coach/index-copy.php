@@ -13,12 +13,31 @@ if(isset($_SESSION['update-remove']))
     unset($_SESSION['update-remove']);
 }
  ?>
+<!-- display the clients scheduled with the coach logged in -->
+<div class="container">
+<h1 class="white-text">Your clients</h1>
+
+    <br>
+
+    <table class="table table-striped table-dark">
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Phone No.</th>
+        <th scope="col">Branch</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Membership</th>
+        <th scope="col">Date Due</th>
+        </tr>
+    </thead>
+    <tbody>
         <?php 
             //Query to Get all Admin
             $sql = "SELECT * 
                     FROM customer 
                     JOIN branch ON customer.Branch_ID = branch.Branch_ID 
-                    WHERE customer.Branch_ID = '" . $_SESSION["coach_loc"] . "'";
+                    WHERE customer.Branch_ID = '" . $_SESSION['coach_loc'] . "'";
                 //Execute the Query
             //Execute the Query
             $res = mysqli_query($conn, $sql);
@@ -47,28 +66,10 @@ if(isset($_SESSION['update-remove']))
                         $gender=$rows['Customer_gender'];
                         $plan=$rows['Customer_plan'];
                         $due=$rows['Date_due'];
-                        $branch=$rows['Branch_location'];
+
                         //Display the Values in our Table
                         ?>
-
-<!-- display the clients scheduled with the coach logged in -->
-<div class="container">
-<h1 class="white-text">Your clients from Branch: <?php echo $branch?></h1>
-
-    <br>
-
-    <table class="table table-striped table-dark">
-    <thead>
-        <tr>
-        <th scope="col">Name</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Phone No.</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Membership</th>
-        <th scope="col">Date Due</th>
-        </tr>
-    </thead>
-    <tbody>     
+                        
                         <tr>
                             <td><?php echo $name; ?></td>
                             <td><?php echo $email; ?></td>

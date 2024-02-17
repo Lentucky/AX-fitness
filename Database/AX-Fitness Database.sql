@@ -46,13 +46,14 @@ Create Table `transaction` (
     transaction_name varchar(100) NOT NULL,
     transaction_price decimal(10,2) NOT NULL
 );
-
 Create Table `branch` (
 	Branch_ID int(11) NOT NULL PRIMARY KEY auto_increment,
-    Branch_Location varchar(100) NOT NULL,
-    Branch_no varchar(100) NOT NULL,
-    Branch_email varchar(100) NOT NULL
+    Branch_location varchar(100) NOT NULL,
+    Branch_address varchar(100) NOT NULL,
+    Branch_no varchar(100) NOT NULL
 );
+
+INSERT INTO branch VALUES (3,'Sta. Cruz, Ewan','address blk lot','63000000000');
 DROP TABLE users;
 INSERT INTO `admins` (`admin_ID`, `admin_name`, `password`) VALUES
 (1, 'admin','password');

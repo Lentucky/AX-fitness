@@ -12,6 +12,7 @@ if(isset($_POST["submit"])){
   if(mysqli_num_rows($result) > 0){
     if($password == $row["password"]){
       $_SESSION["coach"] = $row["Coach_ID"];
+      $_SESSION["coach_loc"] = $row["Branch_ID"];
       header("Location: index.php");  
     }
     else{

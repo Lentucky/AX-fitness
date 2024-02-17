@@ -27,7 +27,7 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="js/jquery.seat-charts.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -48,17 +48,22 @@
             <li class="nav-item ">
             <a class="nav-link " aria-current="page" href="coming-soon.php">Our Branches</a>
             </li>
-            <li class="nav-item ">
-            <a class="nav-link " aria-current="page" href="#">Become a Member</a>
-            </li>
 
             <?php
-                if (!isset($_SESSION['customer'])) {
-                    echo "<li class='nav-item me-5'><a class='nav-link' aria-current='page' href='logout.php'>Logout</a></li>";
+                if (isset($_SESSION['customer'])) {
+                    echo "
+                    <li class='nav-item me-5'>
+                    <a class='nav-link' aria-current='page' href='logout.php'>Logout</a>
+                    </li>";
                 }
 
-                if (isset($_SESSION['customer'])) {
-                    echo "<li class='nav-item me-5'><a class='nav-link' aria-current='page' href='login.php'>Login</a></li>";
+                if (!isset($_SESSION['customer'])) {
+                    echo "
+                    <li class='nav-item'>
+                    <a class='nav-link' aria-current='page' href='member.php'>Become a Member</a>
+                    </li>
+
+                    <li class='nav-item me-5'><a class='nav-link' aria-current='page' href='login.php'>Login</a></li>";
                 }
             ?>
         </ul>

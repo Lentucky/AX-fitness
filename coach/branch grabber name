@@ -1,0 +1,38 @@
+                            <?php 
+                                //PHP Code to grab branch from another Database
+                                $sql2 = "SELECT * FROM branch WHERE Branch_ID='" . $_SESSION['coach_loc'] . "'";
+                                
+                                //Executing qUery
+                                $res2 = mysqli_query($conn, $sql2);
+
+                                //Count Rows to check whether we have categories or not
+                                $count2 = mysqli_num_rows($res2);
+
+                                //IF count is greater than zero, we have categories else we donot have categories
+                                if($count2>0)
+                                {
+                                    //WE have categories
+                                    while($row=mysqli_fetch_assoc($res))
+                                    {
+                                        //get the details of categories
+                                        $id = $row['Branch_ID'];
+                                        $title = $row['Branch_Location'];
+
+                                        ?>
+
+                                        <td><?php echo $title; ?></td>
+
+                                        <?php
+                                    }
+                                }
+                                else
+                                {
+                                    //WE do not have category
+                                    ?>
+                                    <td>Location not found</td>
+                                    <?php
+                                }
+                            
+
+                                //2. Display on Drpopdown
+                            ?>

@@ -15,14 +15,12 @@ include('partials/menu.php');
     <thead>
         <tr>
         <th scope="col">Name</th>
-        <th scope="col">Coach</th>
         <th scope="col">E-mail</th>
         <th scope="col">Phone No.</th>
         <th scope="col">Branch</th>
         <th scope="col">Gender</th>
         <th scope="col">Membership</th>
         <th scope="col">Date Due</th>
-        <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -30,7 +28,10 @@ include('partials/menu.php');
         if(isset($_GET['search']))
         {
             $filtervalues = $_GET['search'];
-            $query = "SELECT * FROM customer WHERE Customer_name LIKE '%$filtervalues%' ";
+            $query = "SELECT * 
+                    FROM customer 
+                    JOIN branch ON customer.Branch_ID = branch.Branch_ID;
+                    WHERE Customer_name LIKE '%$filtervalues%'";
             $query_run = mysqli_query($conn, $query);
 
             if(mysqli_num_rows($query_run) > 0)
@@ -40,7 +41,6 @@ include('partials/menu.php');
                     ?>
                     <tr>
                         <td><?= $items['Customer_name']; ?></td>
-                        <td><?= $items['Coach_ID']; ?></td>
                         <td><?= $items['Customer_email']; ?></td>
                         <td><?= $items['Customer_no']; ?></td>
                         <td><?= $items['Branch_ID']; ?></td>
@@ -63,7 +63,10 @@ include('partials/menu.php');
             else
             {
                 //Query to Get all Admin
-                $sql = "SELECT * FROM customer WHERE Coach_ID=0";
+                $sql = "SELECT * 
+                        FROM customer 
+                        JOIN branch ON customer.Branch_ID = branch.Branch_ID 
+                        WHERE NOT customer.Branch_ID = '" . $_SESSION["coach_loc"] . "'";
                 //Execute the Query
                 $res = mysqli_query($conn, $sql);
 
@@ -84,9 +87,8 @@ include('partials/menu.php');
 
                             //Get individual DAta
                             $customer_id=$rows['Customer_ID'];
-                            $coach=$rows['Coach_ID'];
                             $name=$rows['Customer_name'];
-                            $branch=$rows['Branch_ID'];
+                            $branch=$rows['Branch_location'];
                             $email=$rows['Customer_email'];
                             $number=$rows['Customer_no'];
                             $gender=$rows['Customer_gender'];
@@ -98,7 +100,6 @@ include('partials/menu.php');
                             
                             <tr>
                                 <td><?php echo $name; ?></td>
-                                <td><?php echo $coach; ?></td>
                                 <td><?php echo $email; ?></td>
                                 <td><?php echo $number; ?></td>
                                 <td><?php echo $branch; ?></td>
