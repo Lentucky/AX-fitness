@@ -1,10 +1,10 @@
 <?php include('partials-front/menu.php'); ?>
 
     <?php 
-      if(isset($_SESSION['login']))
+      if(isset($_SESSION['customer']))
       {
-          echo $_SESSION['login'];
-          unset($_SESSION['login']);
+          echo $_SESSION['customer'];
+          
       }
     ?>
 

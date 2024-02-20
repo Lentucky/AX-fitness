@@ -10,15 +10,15 @@ if(isset($_POST["submit"])){
   $email = $_POST["email"];
   $phone = $_POST["phone"];
 
-  $coach = 0;
-
   $password = $_POST["password"];
   $confirmpassword = $_POST["confirmpassword"];
 
   $branch = $_POST["selected-branch"];
-  // $customerplan = $_POST["Customer_plan"];
+  $customerplan = $_POST["Customer_plan"];
   $selectedGender = $_POST["gender"];
+
   $date_due = date('Y-m-d', strtotime('+30 days'));
+
   $duplicate = mysqli_query($conn, "SELECT * FROM customer WHERE Customer_name = '$name' OR Customer_email = '$email'");
   if(mysqli_num_rows($duplicate) > 0){
     echo "<script> alert('Name or E-mail is already taken'); </script>";
@@ -28,7 +28,6 @@ if(isset($_POST["submit"])){
       $query = "INSERT INTO customer SET 
               Customer_name='$name',
               Customer_email='$email',
-              Coach_ID = '$coach',
               Customer_no='$phone',
               branch_ID='$branch',
               Customer_gender='$selectedGender',
@@ -38,6 +37,7 @@ if(isset($_POST["submit"])){
         ";
 
         mysqli_query($conn,$query);
+        header("Location: register.php"); 
         echo "<script> alert('Registration Successful'); </script>";
     }
     else{
@@ -47,27 +47,9 @@ if(isset($_POST["submit"])){
 }
 
 ?>
+
 <form id="regiration_form" action="" method="POST" class="white-text login col-2">
 
-  <!-- first page -->
-  <fieldset>
-    <div class="form-group">
-        <!-- <label for="Customerplan">Customer Plan</label>
-        <select class="form-control" id="Customerplan" name="Customer_plan">
-          <option value="Simple">Simple</option>
-          <option value="Assisted">Assisted</option>
-        </select> -->
-        <input type="button" id="option1" name="next" class="next btn btn-info" value="Next" onclick="sendChoice('Monthly')">Monthly</button>
-        <input type="button" id="option2" name="next" class="next btn btn-info" value="Next" onclick="sendChoice('Trimonthly')">Tri-Monthly</button>
-        <input type="button" id="option3" name="next" class="next btn btn-info" value="Next" onclick="sendChoice('Yearly')">Yearly</button>
-    </div>
-
-    <!-- Hidden input to hold the selected choice -->
-    <input type="hidden" id="selectedChoice" name="choice" value="">
-
-    <!-- <input type="button" name="next" class="next btn btn-info" onclick="displayAnswer()" value="Next" /> -->
-  </fieldset>
-  <!-- second page -->
   <fieldset>
       <div class="form-group">
         <label for="first">First name</label>
@@ -86,17 +68,21 @@ if(isset($_POST["submit"])){
 
       <div class="form-group">
         <label for="phone">Enter a phone number:</label>
-        <input type="tel" id="phone" name="phone" placeholder="63 000 000 0000" pattern="^[0-9]{11}$" required>
+        <input type="tel" id="phone" name="phone" placeholder="0900 000 0000" pattern="^09[0-9]{9}$" required>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" placeholder="Password">
       </div>
-      
+
       <div class="form-group">
-        <label for="confirmpassword">Confirm Password</label>
-        <input type="password" class="form-control" name="confirmpassword" placeholder="Password">
+        <label for="Customerplan">Customer Plan</label>
+        <select class="form-control" id="Customer_plan" name="Customer_plan">
+          <option value="Monthly">Monthly</option>
+          <option value="Trimonthly">Tri-Monthly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -122,37 +108,9 @@ if(isset($_POST["submit"])){
         <label for="other">Other</label>
       </div>
 
-      <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
       <button type="submit" name="submit" id="submit_data" class="submit btn btn-primary" value="Submit">Submit</button>
   </fieldset>
 
 </form>
 
 <?php include('partials-front/footer.php'); ?>
-
-<script type="text/javascript">
- function submitChoice(choice) {
-      // Set the selected choice in the hidden input
-      document.getElementById('selectedChoice').value = choice;
-
-      // Submit the form
-      $('#choiceForm').submit();
-    }
-
-$(document).ready(function(){
-	var current = 1,current_step,next_step,steps,prev_step;
-	steps = $("fieldset").length;
-	$(".next").click(function(){
-		current_step = $(this).parent();
-		next_step = $(this).parent().next();
-		next_step.show();
-		current_step.hide();
-	});
-	$(".previous").click(function(){
-		current_step = $(this).parent();
-		prev_step = $(this).parent().prev();
-		prev_step.show();
-		current_step.hide();
-	});
-});
-</script>

@@ -9,7 +9,7 @@ if(isset($_POST["submit"])){
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
     if($password == $row["password"]){
-      $_SESSION["customer"] = $username;
+      $_SESSION['customer'] = $row["Customer_ID"];
       header("Location: index.php"); 
     }
     else{

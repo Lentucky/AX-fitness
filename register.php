@@ -10,8 +10,6 @@ if(isset($_POST["submit"])){
   $email = $_POST["email"];
   $phone = $_POST["phone"];
 
-  $coach = 0;
-
   $password = $_POST["password"];
   $confirmpassword = $_POST["confirmpassword"];
 
@@ -30,7 +28,6 @@ if(isset($_POST["submit"])){
       $query = "INSERT INTO customer SET 
               Customer_name='$name',
               Customer_email='$email',
-              Coach_ID = '$coach',
               Customer_no='$phone',
               branch_ID='$branch',
               Customer_gender='$selectedGender',
@@ -40,6 +37,7 @@ if(isset($_POST["submit"])){
         ";
 
         mysqli_query($conn,$query);
+        header("Location: register.php"); 
         echo "<script> alert('Registration Successful'); </script>";
     }
     else{
@@ -138,20 +136,20 @@ if(isset($_POST["submit"])){
       document.getElementById('Customer_plan').value = selectedValue;
     }
 
-$(document).ready(function(){
-	var current = 1,current_step,next_step,steps,prev_step;
-	steps = $("fieldset").length;
-	$(".next").click(function(){
-		current_step = $(this).parent();
-		next_step = $(this).parent().next();
-		next_step.show();
-		current_step.hide();
-	});
-	$(".previous").click(function(){
-		current_step = $(this).parent();
-		prev_step = $(this).parent().prev();
-		prev_step.show();
-		current_step.hide();
-	});
+  $(document).ready(function(){
+    var current = 1,current_step,next_step,steps,prev_step;
+    steps = $("fieldset").length;
+    $(".next").click(function(){
+      current_step = $(this).parent();
+      next_step = $(this).parent().next();
+      next_step.show();
+      current_step.hide();
+    });
+    $(".previous").click(function(){
+      current_step = $(this).parent();
+      prev_step = $(this).parent().prev();
+      prev_step.show();
+      current_step.hide();
+    });
 });
 </script>

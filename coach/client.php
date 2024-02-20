@@ -30,7 +30,7 @@ include('partials/menu.php');
             $filtervalues = $_GET['search'];
             $query = "SELECT * 
                     FROM customer 
-                    JOIN branch ON customer.Branch_ID = branch.Branch_ID;
+                    JOIN branch ON customer.Branch_ID = branch.Branch_ID
                     WHERE Customer_name LIKE '%$filtervalues%'";
             $query_run = mysqli_query($conn, $query);
 
@@ -43,7 +43,7 @@ include('partials/menu.php');
                         <td><?= $items['Customer_name']; ?></td>
                         <td><?= $items['Customer_email']; ?></td>
                         <td><?= $items['Customer_no']; ?></td>
-                        <td><?= $items['Branch_ID']; ?></td>
+                        <td><?= $items['Branch_location']; ?></td>
                         <td><?= $items['Customer_gender']; ?></td>
                         <td><?= $items['Customer_plan']?></td>
                         <td><?= $items['Date_due']; ?></td>
@@ -55,7 +55,7 @@ include('partials/menu.php');
             {
                 ?>
                 <tr>
-                    <td colspan="4">No Record Found</td>
+                    <td colspan="7">No Record Found</td>
                 </tr>
                 <?php
             }

@@ -12,8 +12,44 @@ if(isset($_SESSION['update-remove']))
     echo $_SESSION['update-remove'];
     unset($_SESSION['update-remove']);
 }
+
+$sql2 = "SELECT Branch_location 
+        FROM branch
+        JOIN coach ON branch.Branch_ID = coach.Branch_ID 
+        WHERE Coach_ID = '" . $_SESSION["coach"] . "' LIMIT 1";
+$result2 = mysqli_query($conn, $sql2);
+
+if ($result2 && mysqli_num_rows($result2) > 0) {
+    $row2 = mysqli_fetch_assoc($result2);
+    $branchName = $row2['Branch_location'];
+}
+
+
  ?>
-        <?php 
+
+
+<!-- display the clients scheduled with the coach logged in -->
+<div class="container">
+<h1 class="white-text">Your clients from Branch: <?php echo $branchName?></h1>
+
+    <br>
+    <a class="btn btn-primary" href="add-customer.php" role="button">Add Client</a>
+    <br><br>
+
+    <table class="table table-striped table-dark">
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Phone No.</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Membership</th>
+        <th scope="col">Date Due</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php 
             //Query to Get all Admin
             $sql = "SELECT * 
                     FROM customer 
@@ -39,8 +75,7 @@ if(isset($_SESSION['update-remove']))
                         //And while loop will run as long as we have data in database
 
                         //Get individual DAta
-                        $id=$rows['Customer_ID'];
-                        $coach=$rows['Coach_ID'];
+                        $customer_id=$rows['Customer_ID'];
                         $name=$rows['Customer_name'];
                         $email=$rows['Customer_email'];
                         $number=$rows['Customer_no'];
@@ -49,26 +84,8 @@ if(isset($_SESSION['update-remove']))
                         $due=$rows['Date_due'];
                         $branch=$rows['Branch_location'];
                         //Display the Values in our Table
-                        ?>
+                        ?>     
 
-<!-- display the clients scheduled with the coach logged in -->
-<div class="container">
-<h1 class="white-text">Your clients from Branch: <?php echo $branch?></h1>
-
-    <br>
-
-    <table class="table table-striped table-dark">
-    <thead>
-        <tr>
-        <th scope="col">Name</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Phone No.</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Membership</th>
-        <th scope="col">Date Due</th>
-        </tr>
-    </thead>
-    <tbody>     
                         <tr>
                             <td><?php echo $name; ?></td>
                             <td><?php echo $email; ?></td>
@@ -76,6 +93,7 @@ if(isset($_SESSION['update-remove']))
                             <td><?php echo $gender; ?></td>
                             <td><?php echo $plan; ?></td>
                             <td><?php echo $due; ?></td>
+                            <td><a class="btn btn-primary" href="transaction.php?id=<?php echo $customer_id; ?>" role="button">Transaction History</a></td>
                         </tr>
 
                         <?php

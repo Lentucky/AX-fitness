@@ -43,20 +43,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav navigating mx-auto">
             <li class="nav-item ">
-            <a class="nav-link" aria-current="page" href="now-showing.php">Why Join</a>
+            <a class="nav-link" aria-current="page" href="join.php">Why Join</a>
             </li>
             <li class="nav-item ">
-            <a class="nav-link " aria-current="page" href="coming-soon.php">Our Branches</a>
+            <a class="nav-link " aria-current="page" href="branch.php">Our Branches</a>
             </li>
 
             <?php
-                if (isset($_SESSION['customer'])) {
-                    echo "
-                    <li class='nav-item me-5'>
-                    <a class='nav-link' aria-current='page' href='logout.php'>Logout</a>
-                    </li>";
-                }
-
+                session_start();
+                
                 if (!isset($_SESSION['customer'])) {
                     echo "
                     <li class='nav-item'>
@@ -64,6 +59,17 @@
                     </li>
 
                     <li class='nav-item me-5'><a class='nav-link' aria-current='page' href='login.php'>Login</a></li>";
+                }
+
+                else {
+                    echo "
+                    <li class='nav-item me-5'>
+                    <a class='nav-link' aria-current='page' href='exercises.php'>Exercises</a>
+                    </li>
+
+                    <li class='nav-item me-5'>
+                    <a class='nav-link' aria-current='page' href='logout.php'>Logout</a>
+                    </li>";
                 }
             ?>
         </ul>
