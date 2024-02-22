@@ -51,6 +51,7 @@ include('partials/menu.php');
                         $gender=$rows['Customer_gender'];
                         $plan=$rows['Customer_plan'];
                         $due=$rows['Date_due'];
+                        $isPaid=$rows['isPaid'];
 
                         //Display the Values in our Table
                         ?>
@@ -64,6 +65,7 @@ include('partials/menu.php');
                             <td><?php echo $gender; ?></td>
                             <td><?php echo $plan; ?></td>
                             <td><?php echo $due; ?></td>
+                            <td><?php echo $isPaid; ?></td>
                         </tr>
 
                         <?php

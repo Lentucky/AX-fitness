@@ -1,19 +1,35 @@
-<?php include('partials-front/menu.php'); ?>
+<?php 
+include('partials-front/menu.php'); 
 
-    <?php 
-      if(isset($_SESSION['customer']))
-      {
-          echo $_SESSION['customer'];
-          
-      }
-    ?>
+//Create SQL query to get all the fucking users
+$sql = "SELECT * FROM customer where Customer_ID='" . $_SESSION['customer'] . "'";
 
-<header class="trailer">
-    <div class="container">
-        
-    </div>
-</header>
+//execute the query
+$res = mysqli_query($conn, $sql);
 
+//Count rows to check whether we have food or not
+$count = mysqli_num_rows($res);
+
+if($count>0)
+{
+        //We have food in database
+        //Get the food from database and display
+        while($row=mysqli_fetch_assoc($res))
+        {
+                //get the value from the individual columns
+                $id=$rows['Customer_ID'];
+                $name=$rows['Customer_name'];
+                $branch=$rows['Branch_ID'];
+                $email=$rows['Customer_email'];
+                $number=$rows['Customer_no'];
+                $gender=$rows['Customer_gender'];
+                $plan=$rows['Customer_plan'];
+                $due=$rows['Date_due'];
+                $isPaid=$rows['isPaid'];
+        }
+
+}
+ ?>
 <div class="container">
 <div class="row">
         <h4 class="card-title mb-4">Personal Details</h4>
@@ -22,19 +38,23 @@
                 <tbody>
                     <tr>
                         <th scope="row">Name</th>
-                        <td>Jansh Wells</td>
+                        <td><?php echo $name; ?></td>
                     </tr><!-- end tr -->
                     <tr>
-                        <th scope="row">Location</th>
-                        <td>California, United States</td>
+                        <th scope="row">Branch Enrolled</th>
+                        <td><?php echo $branch; ?></td>
                     </tr><!-- end tr -->
                     <tr>
-                        <th scope="row">Language</th>
-                        <td>English</td>
+                        <th scope="row">E-mail</th>
+                        <td><?php echo $email; ?></td>
                     </tr><!-- end tr -->
                     <tr>
-                        <th scope="row">Website</th>
-                        <td>abc12@probic.com</td>
+                        <th scope="row">Number</th>
+                        <td><?php echo $number; ?></td>
+                    </tr><!-- end tr -->
+                    <tr>
+                        <th scope="row">Gender</th>
+                        <td><?php echo $gender; ?></td>
                     </tr><!-- end tr -->
                 </tbody><!-- end tbody -->
             </table><!-- end table -->
@@ -60,4 +80,7 @@
 </div>
 </div>
 
-<?php include('partials-front/footer.php'); ?>
+<?php 
+include('partials-front/footer.php'); 
+
+ ?>

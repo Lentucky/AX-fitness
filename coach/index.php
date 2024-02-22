@@ -45,6 +45,7 @@ if ($result2 && mysqli_num_rows($result2) > 0) {
         <th scope="col">Gender</th>
         <th scope="col">Membership</th>
         <th scope="col">Date Due</th>
+        <th class="col">Status</th>
         <th></th>
         </tr>
     </thead>
@@ -83,6 +84,7 @@ if ($result2 && mysqli_num_rows($result2) > 0) {
                         $plan=$rows['Customer_plan'];
                         $due=$rows['Date_due'];
                         $branch=$rows['Branch_location'];
+                        $isPaid=$rows['isPaid']
                         //Display the Values in our Table
                         ?>     
 
@@ -93,7 +95,11 @@ if ($result2 && mysqli_num_rows($result2) > 0) {
                             <td><?php echo $gender; ?></td>
                             <td><?php echo $plan; ?></td>
                             <td><?php echo $due; ?></td>
-                            <td><a class="btn btn-primary" href="transaction.php?id=<?php echo $customer_id; ?>" role="button">Transaction History</a></td>
+                            <td><?php echo $isPaid; ?></td>
+                            <td>
+                                <a class="btn btn-primary" href="transaction.php?id=<?php echo $customer_id; ?>" role="button">Transaction History</a>
+                                <a class="btn btn-success" href="transaction.php?id=<?php echo $customer_id; ?>" role="button">Update Status</a>
+                            </td>
                         </tr>
 
                         <?php

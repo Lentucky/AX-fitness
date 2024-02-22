@@ -63,8 +63,12 @@
 
                 else {
                     echo "
-                    <li class='nav-item me-5'>
+                    <li class='nav-item'>
                     <a class='nav-link' aria-current='page' href='exercises.php'>Exercises</a>
+                    </li>
+
+                    <li class='nav-item'>
+                    <a class='nav-link' aria-current='page' href='profile.php'>Exercises</a>
                     </li>
 
                     <li class='nav-item me-5'>

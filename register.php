@@ -1,5 +1,5 @@
 <?php include('partials-front/menu.php'); 
-session_start();
+
 if(isset($_POST["submitmember"])){
   $customerplan = $_POST["choice"];
 }
@@ -121,6 +121,16 @@ if(isset($_POST["submit"])){
       <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
       <button type="submit" name="submit" id="submit_data" class="submit btn btn-primary" value="Submit">Submit</button>
   </fieldset>
+  <!-- third page -->
+  <!-- <fieldset>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="customFile">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+
+    <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
+    <button type="submit" name="submit" id="submit_data" class="submit btn btn-primary" value="Submit">Submit</button>
+  </fieldset> -->
 
 </form>
 
