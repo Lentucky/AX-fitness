@@ -37,11 +37,12 @@ include('partials/menu.php');
     <table class="table table-striped table-dark">
     <thead>
         <tr>
-        <th scope="col">transaction_ID</th>
-        <th scope="col">Invoice</th>
-        <th scope="col">Source</th>
+        <th scope="col">Reference No.</th>
+        <th scope="col">Receipt</th>
+        <th scope="col">Identification</th>
         <th scope="col">Payment</th>
         <th scope="col">Date</th>
+        <th scope="col">Phone No. used</th>
         </tr>
     </thead>
     <tbody>
@@ -68,19 +69,67 @@ include('partials/menu.php');
 
                         //Get individual DAta
                         $transaction_id=$rows['transaction_ID'];
-                        $invoice=$rows['Invoice'];
-                        $source=$rows['Source'];
-                        $payment=$rows['Payment'];
-                        $date=$rows['Date'];
-                        $customer_id=$rows['Customer_ID'];
+                        $referenceNo = $rows["referenceNo"];
+                        $receipt = $rows["receipt"];
+                        $identification = $rows["identification"];
+                        $payment= $rows["Payment"];
+                        $date= $rows["Date"];
+                        $phone_no= $rows["phone_no"];
+                        $Customer_ID= $rows["Customer_ID"];
                         ?>     
 
                         <tr>
-                            <td><?php echo $transaction_id; ?></td>
-                            <td><?php echo $invoice; ?></td>
-                            <td><?php echo $source; ?></td>
+                            <td><?php echo $referenceNo; ?></td>
+                            <td>
+                                <?php  
+                                    //CHeck whether we have image or not
+                                    if($receipt=="")
+                                    {
+                                        //WE do not have image, DIslpay Error Message
+                                        echo "No image.";
+                                    }
+                                    else
+                                    {
+                                        if (strtolower($fileExtension) == 'sql') {
+                                            echo "No image.";
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                            <img src="../img/payment/<?php echo $receipt; ?>" width="100px">
+                                            <?php
+                                        }
+                                        //WE Have Image, Display Image
+                                    }
+                                ?>
+                            </td>
+                            <td>
+                                <?php  
+                                    //CHeck whether we have image or not
+                                    if($identification=="")
+                                    {
+                                        //WE do not have image, DIslpay Error Message
+                                        echo "No image.";
+                                    }
+                                    else
+                                    {
+                                        $fileExtension = pathinfo($identification, PATHINFO_EXTENSION);
+                                        if (strtolower($fileExtension) == 'sql') {
+                                            echo "No image.";
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                            <img src="../img/IDs/<?php echo $identification; ?>" width="100px">
+                                            <?php
+                                        }
+                                        //WE Have Image, Display Image
+                                    }
+                                ?>
+                            </td>
                             <td><?php echo $payment; ?></td>
                             <td><?php echo $date; ?></td>
+                            <td><?php echo $phone_no?></td>
                        </tr>
 
                         <?php
@@ -89,8 +138,9 @@ include('partials/menu.php');
                 }
                 else
                 {
+                    header('location: index.php');
                     echo "<script> alert('No Tansaction history'); </script>";
-                    // header('location: index.php');
+                    
                 }
             }
 

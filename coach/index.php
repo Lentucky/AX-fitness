@@ -13,6 +13,12 @@ if(isset($_SESSION['update-remove']))
     unset($_SESSION['update-remove']);
 }
 
+if(isset($_SESSION['update-status']))
+{
+    echo $_SESSION['update-status'];
+    unset($_SESSION['update-status']);
+}
+
 $sql2 = "SELECT Branch_location 
         FROM branch
         JOIN coach ON branch.Branch_ID = coach.Branch_ID 
@@ -98,7 +104,7 @@ if ($result2 && mysqli_num_rows($result2) > 0) {
                             <td><?php echo $isPaid; ?></td>
                             <td>
                                 <a class="btn btn-primary" href="transaction.php?id=<?php echo $customer_id; ?>" role="button">Transaction History</a>
-                                <a class="btn btn-success" href="transaction.php?id=<?php echo $customer_id; ?>" role="button">Update Status</a>
+                                <a class="btn btn-success" href="update-status.php?id=<?php echo $customer_id; ?>" role="button">Update Status</a>
                             </td>
                         </tr>
 

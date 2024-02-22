@@ -68,7 +68,7 @@
                     </li>
 
                     <li class='nav-item'>
-                    <a class='nav-link' aria-current='page' href='profile.php'>Exercises</a>
+                    <a class='nav-link' aria-current='page' href='profile.php'>Profile</a>
                     </li>
 
                     <li class='nav-item me-5'>

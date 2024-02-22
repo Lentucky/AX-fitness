@@ -11,3 +11,7 @@ html,body{
 #regiration_form fieldset:not(:first-of-type) {
     display: none;
 }
+
+.hidden{
+    display: none;
+}

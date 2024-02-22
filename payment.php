@@ -2,18 +2,18 @@
 
 <?php 
 if(isset($_POST["submit"])){
-    $referenceNo = $_POST["referenceNo"];
-    $Payment= $_POST["Payment"];
-    $Date= $_POST["Date"];
-    $phone_no= $_POST["phone_no"];
-    $Customer_ID= $_POST["Customer_ID"];
-
+  $current = date("Y-m-d");
+    $referenceNo = $_POST["reference"];
+    // $Payment= $_POST["Payment"];
+    $Payment= 200;
+    $Date= $current;
+    $phone_no= $_POST["phone"];
+    $Customer_ID= $_SESSION['customer'];
     //for payment
-    if(isset($_FILES['image']['payment_image']))
+    if(isset($_FILES['payment_image']['name']))
     {
         //Get the details of the selected image
-        $payment_image = $_FILES['image']['payment_image'];
-        $current = date("Y-m-d");
+        $payment_image = $_FILES['payment_image']['name'];
 
         //Check Whether the Image is Selected or not and upload image only if selected
         if($payment_image!="")
@@ -24,16 +24,16 @@ if(isset($_POST["submit"])){
             $ext = end(explode('.', $payment_image));
 
             // Create New Name for Image
-            $payment_image = "Payment-".$current."-".rand(000,999).".".$ext;
+            $payment_image = "Payment-".$current."-".rand(00,99).".".$ext;
 
             //B. Upload the Image
             //Get the Src Path and DEstinaton path
 
             // Source path is the current location of the image
-            $src = $_FILES['image']['tmp_name'];
+            $src = $_FILES['payment_image']['tmp_name'];
 
             //Destination Path for the image to be uploaded
-            $dst = "../img/payment/".$payment_image;
+            $dst = "img/payment/".$payment_image;
 
             //Finally Uppload the food image
             $upload = move_uploaded_file($src, $dst);
@@ -54,15 +54,17 @@ if(isset($_POST["submit"])){
     }
     else
     {
-        $payment_image = ""; //SEtting DEfault Value as blank
+        $payment_image = "none"; //SEtting DEfault Value as blank
     }
-
+    if ($_FILES['payment_image']['error'] != UPLOAD_ERR_OK) {
+      echo "File upload failed with error code: " . $_FILES['payment_image']['error'];
+      die();
+    }
     //for identification
-    if(isset($_FILES['image']['discount']))
+    if(isset($_FILES['discount']['name']))
     {
         //Get the details of the selected image
-        $identification = $_FILES['image']['discount'];
-        $current = date("Y-m-d");
+        $identification = $_FILES['discount']['name'];
 
         //Check Whether the Image is Selected or not and upload image only if selected
         if($identification!="")
@@ -79,10 +81,10 @@ if(isset($_POST["submit"])){
             //Get the Src Path and DEstinaton path
 
             // Source path is the current location of the image
-            $src2 = $_FILES['image']['tmp_name'];
+            $src2 = $_FILES['discount']['tmp_name'];
 
             //Destination Path for the image to be uploaded
-            $dst2 = "../img/IDs/".$identification;
+            $dst2 = "img/IDs/".$identification;
 
             //Finally Uppload the food image
             $upload2 = move_uploaded_file($src2, $dst2);
@@ -103,21 +105,22 @@ if(isset($_POST["submit"])){
     }
     else
     {
-        $payment_image = ""; //SEtting DEfault Value as blank
+        $identification = "none"; //SEtting DEfault Value as blank
     }
     
-    $query = "INSERT INTO coach SET 
-            Coach_name='$name',
-            branch_ID='$branch',
-            Coach_email='$email',
-            Coach_no='$phone',
-            Coach_gender='$selectedGender',
-            password='$password'
+    $query = "INSERT INTO transactions SET 
+            referenceNo='$referenceNo',
+            receipt='$payment_image',
+            identification='$identification',
+            Payment='$Payment',
+            Date='$Date',
+            phone_no='$phone_no',
+            Customer_ID='$Customer_ID'
     ";
 
     mysqli_query($conn,$query);
-    echo "<script> alert('Registration Successful'); </script>";
-    header("location: coach.php");
+    echo "<script> alert('Payment Successful'); </script>";
+    header("location: index.php");
 
 }
 
@@ -127,41 +130,40 @@ if(isset($_POST["submit"])){
     <div class="container">
         <h1>Payment</h1>
         <h3>Our online service only accepts Gcash and Paymaya payment currently</h3>
-        <form action="" method="POST" class="white-text login col-2">
+        <form action="" method="POST" enctype="multipart/form-data" class="white-text login col-2">
           <div class="form-group">
-            <label for="first">Select QR Code</label>
-            <select class="form-control">
-                <option>Paymaya</option>
-                <option>Gcash</option>
-            </select>
+            <img src="img/QR_Code.png" alt="">
           </div>
 
           <div class="form-group">
             <label for="last">Are you a student or a senior/PWD?</label>
-            <input class="form-check-input" type="radio" id="yes" name="yes" value="male">
-            <label for="male">Yes</label>
-            <input class="form-check-input" type="radio" id="no" name="no" value="female" checked>
-            <label for="female">No</label>
+      
+            <input type="radio" id="hide" name="example" value="hide" checked />
+            <label for="hide">Hide</label>
+
+            <input type="radio" id="show" name="example" value="show" />
+            <label for="show">Show</label>
+
           </div>
 
-          <div class="custom-file">
+          <div id="hiddenInput" class="custom-file" style="display:none;">
             <input type="file" class="custom-file-input" id="discount" name="discount">
-            <label class="custom-file-label" for="customFile">Put your ID here to confirm your discount</label>
+            <label class="custom-file-label" for="discount">Put your ID here to confirm your discount</label>
           </div>
 
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="payment_image" name="payment_image">
-            <label class="custom-file-label" for="customFile">Put your image receipt here</label>
+            <label class="custom-file-label" for="payment_image">Put your image receipt here</label>
           </div>
           
           <div class="form-group">
-            <label for="phone">Reference Number:</label>
-            <input type="tel" id="reference" name="reference" placeholder="Input the Reference Number here" required>
+            <label for="reference">Reference Number:</label>
+            <input type="text" id="reference" name="reference" placeholder="Input the Reference Number here" required>
           </div>
 
           <div class="form-group">
             <label for="phone">Phone number used for payment:</label>
-            <input type="tel" id="phone" name="phone" placeholder="0900 000 0000" pattern="[0-9]{2} [0-9]{3} [0-9]{3} [0-9]{4}$" required>
+            <input type="tel" id="phone" name="phone" placeholder="0900 000 0000" pattern="^09[0-9]{9}$" required>
           </div>
 
             <br>
@@ -171,4 +173,20 @@ if(isset($_POST["submit"])){
     </div>
 </div>
 
+<script type="text/javascript">
+const box = document.getElementById('hiddenInput');
+
+function handleRadioClick() {
+  if (document.getElementById('show').checked) {
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+const radioButtons = document.querySelectorAll('input[name="example"]');
+radioButtons.forEach(radio => {
+  radio.addEventListener('click', handleRadioClick);
+});
+</script>
 <?php include('partials-front/footer.php'); ?>
