@@ -1,5 +1,10 @@
 <?php include('partials/menu.php'); 
-
+$duplicate = mysqli_query($conn, "SELECT * FROM customer WHERE Customer_name = '$name' OR Customer_email = '$email'");
+if(mysqli_num_rows($duplicate) > 0){
+  echo "<script> alert('Name or E-mail is already taken'); </script>";
+}
+else{
+  if($_POST["password"] == $_POST["confirmpassword"]){
     $sql="SELECT * FROM coach where Coach_ID=" . $_SESSION['coach'] . "";
 
     $res=mysqli_query($conn, $sql);
@@ -22,6 +27,12 @@
             header('profile.php');
         }
     }
+  }
+  else{
+    echo "<script> alert('Password doesn't match'); </script>";
+  }
+}
+
 ?>
 
 
@@ -38,11 +49,16 @@
             <label for="phone">Enter a phone number:</label>
             <input type="tel" id="phone" name="phone" value="<?php echo $phone; ?>" pattern="[0-9]{2} [0-9]{3} [0-9]{3} [0-9]{4}$" required>
           </div>
-<!-- 
+
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password">
-          </div> -->
+          </div>
+
+          <div class="form-group">
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" class="form-control" name="confirmpassword" placeholder="Password">
+          </div>
 
             <br>
           <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>

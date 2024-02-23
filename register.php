@@ -14,10 +14,28 @@ if(isset($_POST["submit"])){
   $confirmpassword = $_POST["confirmpassword"];
 
   $branch = $_POST["selected-branch"];
+
   $customerplan = $_POST["Customer_plan"];
+  $current_date = date("Y-m-d");
+
+  switch ($customer_plan) {
+    case "Monthly":
+        $days_to_add = 30;
+        break;
+    case "Trimonthly":
+        $days_to_add = 90;
+        break;
+    case "Yearly":
+        $days_to_add = 365;
+        break;
+    default:
+        // Handle unrecognized plan, or set a default value
+        $days_to_add = 0;
+  }
+  
   $selectedGender = $_POST["gender"];
 
-  $date_due = date('Y-m-d', strtotime('+30 days'));
+  $date_due = date("Y-m-d", strtotime($current_date . " +{$days_to_add} days"));
 
   $duplicate = mysqli_query($conn, "SELECT * FROM customer WHERE Customer_name = '$name' OR Customer_email = '$email'");
   if(mysqli_num_rows($duplicate) > 0){
