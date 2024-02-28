@@ -37,9 +37,6 @@
           <a class="nav-link" aria-current="page" href="profile.php">Profile</a>
           </li>
           <li class="nav-item ">
-          <a class="nav-link " aria-current="page" href="client.php">Clients</a>
-          </li>
-          <li class="nav-item ">
           <a class="nav-link " aria-current="page" href="coach.php">Coach</a>
           </li>
           <li class="nav-item me-5 ">

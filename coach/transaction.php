@@ -91,13 +91,14 @@ include('partials/menu.php');
                                         }
                                         else
                                         {
+                                            $fileExtension = pathinfo($identification, PATHINFO_EXTENSION);
                                             if (strtolower($fileExtension) == 'sql') {
                                                 echo "No image.";
                                             }
                                             else
                                             {
                                                 ?>
-                                                <img src="../img/payment/<?php echo $receipt; ?>" width="100px">
+                                                <img src="../img/payment/<?php echo $receipt; ?>" width="100px" alt="Image Unavailable">
                                                 <?php
                                             }
                                             //WE Have Image, Display Image
@@ -121,7 +122,7 @@ include('partials/menu.php');
                                             else
                                             {
                                                 ?>
-                                                <img src="../img/IDs/<?php echo $identification; ?>" width="100px">
+                                                <img src="../img/IDs/<?php echo $identification; ?>" width="100px" alt="Image Unavailable">
                                                 <?php
                                             }
                                             //WE Have Image, Display Image

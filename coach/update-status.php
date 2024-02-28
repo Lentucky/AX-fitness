@@ -3,32 +3,34 @@
     //Include constants.php file here
     include('../config/constants.php');
     include('partials/login-check.php'); 
-
-    // 1. get the ID of Admin to be deleted
+    // Assuming you have a database connection established ($conn)
+    // and $_GET['id'] is defined
+    
+    // Get the ID of the customer to be updated
     $customer_id = $_GET['id'];
-
-    //2. Create SQL Query to Delete Admin
-    $sql = "UPDATE customer SET isPaid='Paid' WHERE Customer_ID=$customer_id";
-
-    //Execute the Query
-    $res = mysqli_query($conn, $sql);
-
+    
+    // Update isPaid and Date_due based on the current values
+    $sqlUpdate = "UPDATE customer SET isPaid = CASE WHEN isPaid = 'Paid' THEN 'Unpaid' ELSE 'Paid' END, Date_due = CASE 
+                        WHEN isPaid = 'Unpaid' AND Customer_plan = 'Monthly' THEN DATE_ADD(CURDATE(), INTERVAL 30 DAY)
+                        WHEN isPaid = 'Unpaid' AND Customer_plan = 'Trimonthly' THEN DATE_ADD(CURDATE(), INTERVAL 90 DAY)
+                        WHEN isPaid = 'Unpaid' AND Customer_plan = 'Yearly' THEN DATE_ADD(CURDATE(), INTERVAL 365 DAY)
+                        ELSE Date_due END 
+                  WHERE Customer_ID = $customer_id";
+    
+    // Execute the Query
+    $resUpdate = mysqli_query($conn, $sqlUpdate);
+    
     // Check whether the query executed successfully or not
-    if($res==true)
-    {
-        //Query Executed Successully and Admin Deleted
-        //Create SEssion Variable to Display Message
-        $_SESSION['update-status'] = "<div class='success'>Status updated successfully.</div>";
-        //Redirect to Manage Admin Page
-        header('location: index.php');
+    if ($resUpdate) {
+        // Query Executed Successfully
+        $_SESSION['update-status'] = "<div class='success'>Status and Date_due updated successfully.</div>";
+    } else {
+        // Failed to update status and/or Date_due
+        $_SESSION['update-status'] = "<div class='error'>Failed to update status and/or Date_due.</div>";
     }
-    else
-    {
-        //Failed to Delete Admin
-        $_SESSION['update-status'] = "<div class='error'>Failed to update.</div>";
-        header('location: index.php');
-    }
+    
+    // Redirect to the Manage Admin Page
+    header('location: index.php');
 
-    //3. Redirect to Manage Admin page with message (success/error)
-
+    
 ?>

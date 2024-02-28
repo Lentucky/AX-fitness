@@ -30,11 +30,29 @@ if ($result2 && mysqli_num_rows($result2) > 0) {
     $branchName = $row2['Branch_location'];
 }
 
+$sql3 = "SELECT present 
+        FROM coach
+        WHERE Coach_ID = '" . $_SESSION["coach"] . "' LIMIT 1";
+$result3 = mysqli_query($conn, $sql3);
+
+if ($result3 && mysqli_num_rows($result3) > 0) {
+    $row3 = mysqli_fetch_assoc($result3);
+    $present = $row3['present'];
+}
+
 
  ?>
 
 
 <!-- display the clients scheduled with the coach logged in -->
+<div class="container">
+    <h1>You are currently <?php echo $present?> in your gym.</h1>
+
+    <a href="update-present.php" class="btn btn-success">Log in the gym?</a>
+
+    <a href="update-present.php" class="btn btn-danger">Log out the gym?</a>
+</div>
+
 <div class="container">
 <h1 class="white-text">Your clients from Branch: <?php echo $branchName?></h1>
 
@@ -61,7 +79,7 @@ if ($result2 && mysqli_num_rows($result2) > 0) {
             $sql = "SELECT * 
                     FROM customer 
                     JOIN branch ON customer.Branch_ID = branch.Branch_ID 
-                    WHERE customer.Branch_ID = '" . $_SESSION["coach_loc"] . "'";
+                    WHERE customer.Branch_ID = '" . $_SESSION["coach_loc"] . "' ORDER BY Date_due";
                 //Execute the Query
             //Execute the Query
             $res = mysqli_query($conn, $sql);

@@ -27,7 +27,10 @@ if(isset($_SESSION['delete']))
     <tbody>
         <?php 
             //Query to Get all Admin
-            $sql = "SELECT * FROM coach";
+            // $sql = "SELECT * FROM coach";
+            $sql = "SELECT *
+                    FROM coach
+                    JOIN branch ON coach.branch_id = branch.branch_ID";
             //Execute the Query
             $res = mysqli_query($conn, $sql);
 
@@ -49,7 +52,7 @@ if(isset($_SESSION['delete']))
                         //Get individual DAta
                         $id=$rows['Coach_ID'];
                         $coach_name=$rows['Coach_name'];
-                        $branch_id=$rows['Branch_ID'];
+                        $branch_id=$rows['Branch_location'];
                         $coach_email=$rows['Coach_email'];
                         $coach_no=$rows['Coach_no'];
                         $coach_gender=$rows['Coach_gender'];

@@ -39,9 +39,6 @@
           <li class="nav-item ">
           <a class="nav-link " aria-current="page" href="coach.php">Coaches</a>
           </li>
-          <li class="nav-item ">
-          <a class="nav-link " aria-current="page" href="plan.php">Plans</a>
-          </li>
           <li class="nav-item me-5 ">
           <a class="nav-link " aria-current="page" href="logout.php">Logout</a>
           </li>

@@ -8,8 +8,11 @@ if(isset($_SESSION['upload']))
 }
 
 //Create SQL query to get all the fucking users
-$sql = "SELECT * FROM customer where Customer_ID='" . $_SESSION['customer'] . "'";
-
+// $sql = "SELECT * FROM customer where Customer_ID='" . $_SESSION['customer'] . "'";
+$sql = "SELECT *
+        FROM customer 
+        JOIN branch ON customer.branch_id = branch.branch_ID
+        WHERE customer.Customer_ID = '" . $_SESSION['customer'] . "'";
 //execute the query
 $res = mysqli_query($conn, $sql);
 
@@ -25,7 +28,7 @@ if($count>0)
                 //get the value from the individual columns
                 $id=$rows['Customer_ID'];
                 $name=$rows['Customer_name'];
-                $branch=$rows['Branch_ID'];
+                $branch=$rows['Branch_location'];
                 $email=$rows['Customer_email'];
                 $number=$rows['Customer_no'];
                 $gender=$rows['Customer_gender'];
@@ -35,6 +38,7 @@ if($count>0)
         }
 
 }
+
  ?>
 <div class="container">
 <div class="row">
@@ -65,6 +69,9 @@ if($count>0)
             </tbody><!-- end tbody -->
         </table><!-- end table -->
     </div>
+
+    <br>
+    <a class='btn btn-primary' href='edit-profile.php' role='button'>Edit your Information</a>
 </div>
 
     <div>
@@ -74,10 +81,8 @@ if($count>0)
             if($isPaid=="Paid"){
             echo 
             "<li class='work-item' data-date='2020-21'>
-                <h3 class='lh-base mb-0'>Paid! You have paid for your membership for your current term!</h3>
-                <p class='font-size-13 mb-2'>Web Designer</p>
-                <p>To achieve this, it would be necessary to have uniform grammar, and more
-                    common words.</p>
+                <h3 class='lh-base mb-0'>Paid!</h3>
+                <h4 class='1h-base mb-0'>You have paid for your membership for your current term!</h4>
             </li>";
             }else{
             echo

@@ -12,14 +12,14 @@ include('partials/menu.php');
         <th scope="col">Phone no.</th>
         <th scope="col">Branch</th>
         <th scope="col">Gender</th>
-        <th scope="col"></th>
+        <th scope="col">Present</th>
         <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         <?php 
             //Query to Get all Admin
-            $sql = "SELECT * FROM coach";
+            $sql = "SELECT * FROM coach WHERE NOT Coach_ID = '" . $_SESSION["coach"] . "' ";
             //Execute the Query
             $res = mysqli_query($conn, $sql);
 
@@ -45,6 +45,7 @@ include('partials/menu.php');
                         $coach_email=$rows['Coach_email'];
                         $coach_no=$rows['Coach_no'];
                         $coach_gender=$rows['Coach_gender'];
+                        $present=$rows['present'];
                         //Display the Values in our Table
                         ?>
                         <tr>
@@ -53,6 +54,8 @@ include('partials/menu.php');
                             <td><?php echo $coach_no; ?></td>
                             <td><?php echo $branch_id; ?></td>
                             <td><?php echo $coach_gender; ?></td>
+                            <td><?php echo $present; ?></td>
+                            <td><a href="" class="btn btn-primary">Substitute?</a></td>
                         </tr>
                         <?php
                     }
