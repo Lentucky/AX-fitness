@@ -1,6 +1,10 @@
 <?php include('partials-front/menu.php'); ?>
 
 <?php 
+if (!isset($_SESSION['customer'])) {
+  header("Location: login.php");
+}
+
 if(isset($_POST["submit"])){
   $current = date("Y-m-d");
     $referenceNo = $_POST["reference"];
@@ -70,8 +74,6 @@ if(isset($_POST["submit"])){
         if($identification!="")
         {
             // Image is SElected
-            //A. REnamge the Image
-            //Get the extension of selected image (jpg, png, gif, etc.) "vijay-thapa.jpg" vijay-thapa jpg
             $ext2 = end(explode('.', $identification));
 
             // Create New Name for Image
@@ -79,7 +81,6 @@ if(isset($_POST["submit"])){
 
             //B. Upload the Image
             //Get the Src Path and DEstinaton path
-
             // Source path is the current location of the image
             $src2 = $_FILES['discount']['tmp_name'];
 
@@ -121,39 +122,40 @@ if(isset($_POST["submit"])){
     mysqli_query($conn,$query);
     echo "<script> alert('Payment Successful'); </script>";
     header("location: index.php");
-
+   
+  if ($isPaid=="Pending") {
+      header("Location: profile.php");
+  }
 }
 
 ?>
-
-<div class="page-header">
+<h1>Payment</h1>
+<div class="page-header" style="display: flex;">
+    
     <div class="container">
-        <h1>Payment</h1>
-        <h3>Our online service only accepts Gcash and Paymaya payment currently</h3>
-        <form action="" method="POST" enctype="multipart/form-data" class="white-text login col-2">
+        <form action="" method="POST" enctype="multipart/form-data" class="white-text login">
           <div class="form-group">
-            <img src="img/QR_Code.png" alt="">
+              <h5>Are you a student or a senior/PWD?</h5>
+
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="hide" name="example" value="hide" checked>
+                  <label class="form-check-label" for="hide">No</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="show" name="example" value="show">
+                  <label class="form-check-label" for="show">Yes</label>
+              </div>
           </div>
-
-          <div class="form-group">
-            <label for="last">Are you a student or a senior/PWD?</label>
-      
-            <input type="radio" id="hide" name="example" value="hide" checked />
-            <label for="hide">Hide</label>
-
-            <input type="radio" id="show" name="example" value="show" />
-            <label for="show">Show</label>
-
-          </div>
-
           <div id="hiddenInput" class="custom-file" style="display:none;">
+          <label class="custom-file-label" for="discount">Put your ID here to confirm your discount</label>
             <input type="file" class="custom-file-input" id="discount" name="discount">
-            <label class="custom-file-label" for="discount">Put your ID here to confirm your discount</label>
+            <br><br>
           </div>
 
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="payment_image" name="payment_image">
             <label class="custom-file-label" for="payment_image">Put your image receipt here</label>
+            <input type="file" class="custom-file-input" id="payment_image" name="payment_image">
           </div>
           
           <div class="form-group">
@@ -170,6 +172,12 @@ if(isset($_POST["submit"])){
           <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
             <br>
         </form>
+    </div>
+    <div class="container">
+      <div class="form-group">
+          <img src="img/QR_Code.png" alt="" style="width: 60%;">
+      </div>
+      <h>Our online service only accepts Gcash and Paymaya payment currently</h4>
     </div>
 </div>
 

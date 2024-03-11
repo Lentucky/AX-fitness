@@ -4,8 +4,9 @@ html,body{
     font-family: 'PT Sans', sans-serif;
     font-family: 'Work Sans', sans-serif;
 
-    background: #444444;
+    background: #444;
 }
+
 
 /* sa register to wag nyo pakielaman */
 #regiration_form fieldset:not(:first-of-type) {
@@ -15,3 +16,379 @@ html,body{
 .hidden{
     display: none;
 }
+
+/* Basic styling for the header */
+header {
+    background-color: #480162;
+    text-align: center;
+    font-family: 'Gill Sans', sans-serif;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    padding: 30px;
+    display: relative;
+    background-color: #480162;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color:#F3E5F5;
+    font-weight: bold;
+}
+
+.social-icons a:hover {
+    opacity: 0.7;
+}
+
+/* Set specific colors for each brand */
+.fa-facebook {
+    color: rgb(255, 255, 255);
+}
+
+.fa-messenger {
+    color: white;
+}
+
+.white-text{
+    color: #e5e4e4da;
+}
+
+nav img {
+    margin-left: 10px;
+    height: 50px;
+    width: auto;
+}
+body{
+    background-color: #480162; /* Adjust the color and opacity as needed */
+}
+
+.card {
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+
+
+.nav-links {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.nav-link {
+    color: whitesmoke;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 19px;
+}
+
+.nav-link:hover{
+    color: black;
+}
+
+#login-link {
+    padding: 10px;
+    color: white;
+      text-decoration: none;
+}
+
+
+#login-link:hover{
+    color:black;
+  
+}
+
+h1{
+   color: bisque;
+    font-size: 40px;
+}
+
+/* login stuff */
+.login-container {
+    color:#480162;
+}
+
+.page-header{
+    margin: auto 100px;
+}
+
+
+#login-link {
+    padding: 10px; /* Add some padding so it's not right against the edge */
+}   
+
+body {
+    color: #000; /* Integrated font color */
+    overflow-x: hidden;
+    height: 100%;
+    background-image: linear-gradient(to right, #634883, #7c5aa4);
+    background-repeat: no-repeat;
+}
+
+input, textarea {
+    background-color: #F3E5F5;
+    border-radius: 50px !important;
+    padding: 12px 15px 12px 15px !important;
+    width: 100%;
+    box-sizing: border-box;
+    border: none !important;
+    border: 1px solid #F3E5F5 !important;
+    font-size: 16px !important;
+    color: #000 !important;
+    font-weight: 400;
+}
+
+input:focus, textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #D500F9 !important;
+    outline-width: 0;
+    font-weight: 400;
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+.card {
+    border-radius: 0;
+    border: none;
+}
+
+.card1 {
+    width: 50%;
+    padding: 40px 30px 10px 30px;
+}
+.form.check.label{
+    font-size: 8px;
+}
+.card2 {
+    width: 50%;
+    background-image: url('../img/DSCF2619.jpg');
+    background-size: cover;
+}
+
+.card4 {
+    width: 50%;
+    background-image: url('../img/DSCF2570.jpg');
+    background-size: cover;
+}
+
+#logo {
+    width: 120px;
+    height: 80px;
+}
+
+.heading {
+    margin-bottom: 60px !important;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::placeholder {
+    color: #000 !important;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #000 !important;
+}
+
+::-ms-input-placeholder {
+    color: #000 !important;
+}
+
+.form-control-label {
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.msg-info {
+    padding-left: 15px;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.select-icon {
+    pointer-events: none; /* Disable pointer events to prevent clicking on the icon */
+    position: absolute; /* Position the icon absolutely */
+    right: 12px; /* Adjust icon position */
+    top: 50%; /* Align icon vertically */
+    transform: translateY(-50%); /* Center the icon vertically */
+    color: #000; /* Adjust icon color */
+}
+
+.btn-color {
+    border-radius: 50px;
+    color: #fff;
+    background-image: linear-gradient(to right, #480162, purple);
+    padding: 15px;
+    cursor: pointer;
+    border: none !important;
+    margin-top: 40px;
+}
+
+.btn-color:hover {
+    color: #fff;
+    background-image: linear-gradient(to right, purple, #480162);
+}
+
+.btn-white {
+    border-radius: 50px;
+    color: #480162;
+    background-color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 2px solid #480162 !important;
+    margin-left: 10px;
+}
+
+.btn-white:hover {
+    color: #fff;
+    background-image: linear-gradient(to right,purple, #D500F9);
+}
+
+a {
+    color: #000;
+}
+
+a:hover {
+    color: #000;
+}
+
+.bottom {
+    width: 100%;
+    margin-top: 50px !important;
+}
+
+.sm-text {
+    font-size: 15px;
+}
+
+/* Style for the oval-shaped button */
+.btn-custom {
+    background-color: #ff6602;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 25%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition effect for the border */
+}
+
+.btn-custom:hover {
+    transform: scale(1.2); /* Increase the size by 20% (adjust as needed) */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Add border when button is focused (clicked) */
+.btn-custom:focus {
+    border: 2px solid #540172;
+    outline: none; /* Remove default focus outline */
+}
+
+/* our memberships */
+.train-container {
+    display: flex;
+    justify-content: center;
+}
+
+.training {
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 10%;
+}
+
+.training img {
+    width: 100%;
+}
+
+.training-plans {
+    text-align: center;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: #f9f9f9;
+    margin-top: 20px;
+}
+
+.training-container {
+    padding: 16px;
+    text-align: center;
+    background-color: #480162; /* Change this to the desired color */
+}
+
+.button-container {
+    margin-top: 10px; /* Adjust as needed for spacing */
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Change this to the desired color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn a{
+    text-decoration: none;
+}
+
+/* Clearfix to handle any potential floating issues */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+  
+
+
+/* for phone sizes */
+@media screen and (max-width: 992px) {
+    .card1 {
+        width: 100%;
+        padding: 40px 30px 10px 30px;
+    }
+
+    .card2 {
+        width: 100%;
+    }
+
+    .right {
+        margin-top: 100px !important;
+        margin-bottom: 100px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .login-container {
+        padding: 10px !important;
+    }
+
+    .card2 {
+        padding: 50px;
+    }
+
+    .right {
+        margin-top: 50px !important;
+        margin-bottom: 50px !important;
+    }
+}
+

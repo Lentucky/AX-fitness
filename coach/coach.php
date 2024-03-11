@@ -39,7 +39,7 @@ include('partials/menu.php');
                         //And while loop will run as long as we have data in database
 
                         //Get individual DAta
-                        $id=$rows['Coach_ID'];
+                        $coach_id=$rows['Coach_ID'];
                         $coach_name=$rows['Coach_name'];
                         $branch_id=$rows['Branch_ID'];
                         $coach_email=$rows['Coach_email'];
@@ -55,7 +55,25 @@ include('partials/menu.php');
                             <td><?php echo $branch_id; ?></td>
                             <td><?php echo $coach_gender; ?></td>
                             <td><?php echo $present; ?></td>
-                            <td><a href="" class="btn btn-primary">Substitute?</a></td>
+                            <td>                                                            
+                            <?php
+                            if ($present == "Checked_out") {
+                                ?>
+                                <script>
+                                    function confirmSubstitute() {
+                                        var confirmation = confirm("Are you sure you want to substitute?");
+                                        if (confirmation) {
+                                            // If the user clicks 'OK', redirect to substitute.php
+                                            window.location.href = 'substitute.php?id=<?php echo $coach_id; ?>';
+                                        }
+                                    }
+                                </script>
+
+                                <button onclick="confirmSubstitute()" class='btn btn-success'>Substitute?</button>
+                                <?php
+                            }
+                            ?>
+                            </td>
                         </tr>
                         <?php
                     }

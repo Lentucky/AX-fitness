@@ -6,7 +6,8 @@ session_start();
 
 if(isset($_POST["submit"])){
   $username = $_POST["username"];
-  $password = $_POST["password"];
+  $raw_password = md5($_POST['password']);
+  $password = mysqli_real_escape_string($conn, $raw_password);
   $result = mysqli_query($conn, "SELECT * FROM admins WHERE admin_name = '$username' ");
   $row = mysqli_fetch_assoc($result);
   if(mysqli_num_rows($result) > 0){
@@ -43,33 +44,40 @@ if(isset($_POST["submit"])){
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-</head>
+
+    <style>
+        /* Add custom styles if needed */
+        .login {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 50px; /* Adjust margin-top for centering */
+        }
+    </style>
+  </head>
 <body>
 
 <div class="page-header">
     <div class="container">
-        <form action="login.php" method="POST" class="white-text login col-2">
-          <h2>LOGIN</h2>
-          <?php if(isset($_GET['error'])) {?>
-            <p class="error"> <?php echo $_GET['error']; ?></p>
-          <?php } ?>
+        <form action="login.php" method="POST" class="white-text login col-12 col-md-6">
+            <h2 class="text-center mb-4">ADMIN LOGIN</h2>
+            <?php if(isset($_GET['error'])) {?>
+                <p class="alert alert-danger"> <?php echo $_GET['error']; ?></p>
+            <?php } ?>
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">E-mail</label>
-            <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email">
-          </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">E-mail</label>
+                <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
 
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-          </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            </div>
 
-          <button type="submit" name="submit" class="btn btn-primary">Login</button>
-            <br>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
         </form>
     </div>
 </div>
-
 <script src="../js/bootstrap.min.js"></script>
 
 </body>

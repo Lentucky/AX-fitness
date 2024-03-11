@@ -25,7 +25,7 @@ Create Table `admins` (
     admin_name varchar(100) NOT NULL,
     password varchar(100) NOT NULL
 );
-
+drop table coach;
 Create Table `coach` (
 	Coach_ID int(11) NOT NULL PRIMARY KEY auto_increment,
     Coach_name varchar(100) NOT NULL,
@@ -33,10 +33,11 @@ Create Table `coach` (
     Coach_email varchar(100) NOT NULL,
     Coach_no varchar(100) NOT NULL,
     Coach_gender varchar(20) NOT NULL,
+    present varchar(100) NOT NULL,
     password varchar(100) NOT NULL
 );
 INSERT INTO `coach` VALUES
-(1, 'Mark Denson Malipol',2,'malipol@gmail.com','630000000000','male','password');
+(2, 'Brian De Jesus',1,'dejesus@gmail.com','090000000000','male','absent','password');
 
 Create Table `membership` (
 	Plan_ID int(11) NOT NULL PRIMARY KEY auto_increment,

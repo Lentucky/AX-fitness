@@ -4,7 +4,7 @@
     <div class="container white-text">
         <h1>Training Programs</h1>
 
-        <p>Some training shit here maybe</p>
+        <p>work in progress</p>
     </div>
 </header>
 

@@ -3,35 +3,30 @@
     //Include constants.php file here
     include('../config/constants.php');
     include('partials/login-check.php'); 
-
-    // 1. get the ID of Admin to be deleted
+    // Assuming you have a database connection established ($conn)
+    // and $_GET['id'] is defined
+    
+    // Get the ID of the customer to be updated
     $customer_id = $_GET['id'];
+    
+    // Update isPaid and Date_due based on the current values
+    $sqlUpdate = "UPDATE customer SET isPaid = 'Rejected'
+                  WHERE Customer_ID = $customer_id";
+    
+    // Execute the Query
+    $resUpdate = mysqli_query($conn, $sqlUpdate);
+    
+    // Check whether the query executed successfully or not
+    if ($resUpdate) {
+        // Query Executed Successfully
+        $_SESSION['update-status'] = "<div class='success'>Status and Date_due updated successfully.</div>";
+    } else {
+        // Failed to update status and/or Date_due
+        $_SESSION['update-status'] = "<div class='error'>Failed to update status and/or Date_due.</div>";
+    }
+    
+    // Redirect to the Manage Admin Page
+    header('location: index.php');
 
     
-    //to adjust the date due
-
-    //2. Create SQL Query to Delete Admin
-    $sql = "UPDATE customer SET isPaid='Paid' WHERE Customer_ID=$customer_id";
-
-    //Execute the Query
-    $res = mysqli_query($conn, $sql);
-
-    // Check whether the query executed successfully or not
-    if($res==true)
-    {
-        //Query Executed Successully and Admin Deleted
-        //Create SEssion Variable to Display Message
-        $_SESSION['update-status'] = "<div class='success'>Status updated successfully.</div>";
-        //Redirect to Manage Admin Page
-        header('location: index.php');
-    }
-    else
-    {
-        //Failed to Delete Admin
-        $_SESSION['update-status'] = "<div class='error'>Failed to update.</div>";
-        header('location: index.php');
-    }
-
-    //3. Redirect to Manage Admin page with message (success/error)
-
 ?>

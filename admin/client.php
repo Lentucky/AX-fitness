@@ -30,6 +30,7 @@ include('partials/menu.php');
             $filtervalues = $_GET['search'];
             $query = "SELECT * 
                     FROM customer 
+                    JOIN branch ON customer.Branch_ID = branch.Branch_ID 
                     WHERE Customer_name LIKE '%$filtervalues%'";
             $query_run = mysqli_query($conn, $query);
 

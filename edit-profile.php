@@ -1,5 +1,6 @@
-<?php include('partials-front/menu.php'); 
-
+<?php 
+session_start();
+require 'config/constants.php';
     $sql="SELECT * FROM customer where Customer_ID=" . $_SESSION['customer'] . "";
 
     $res=mysqli_query($conn, $sql);
@@ -34,96 +35,190 @@
     }
 
     ob_start();
-
+    if (!isset($_SESSION['customer'])) {
+      header("Location: login.php");
+  }
 ?>
-<form id="regiration_form" action="" method="POST" class="white-text login col-2">
-  <fieldset>
-    <div class="form-group">
-        <label for="Customerplan">Customer Plan</label>
-        <select class="form-control" id="Customer_plan" name="Customer_plan" value="<?php $customer_plan?>">
-          <option value="Monthly">Monthly</option>
-          <option value="Trimonthly">Tri-Monthly</option>
-          <option value="Yearly">Yearly</option>
-        </select>
-    </div>
 
-      <div class="form-group">
-        <label for="first">First name</label>
-        <input type="text" class="form-control" name="first" aria-describedby="emailHelp" value="<?php echo $first_name;?>">
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AX Fitness</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    <!-- Font-awesome -->
+    <script src="https://kit.fontawesome.com/d8cfbe84b9.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/SignUp.css" />
 
-      <div class="form-group">
-        <label for="last">Last name</label>
-        <input type="text" class="form-control" name="last" aria-describedby="emailHelp" value="<?php echo $last_name;?>">
-      </div>
+    <style type="text/css">
+	#regiration_form fieldset:not(:first-of-type) {
+		display: none;
+	}
+  </style>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="js/jquery.seat-charts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" class="form-control" name="email" value="<?php echo $email?>">
-      </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+</head>
+<body>
 
-      <div class="form-group">
-        <label for="phone">Enter a phone number:</label>
-        <input type="tel" id="phone" name="phone" value="<?php echo $phone?>" pattern="^09[0-9]{9}$" required>
-      </div>
+    <header>
+    <nav class="navbar navbar-expand-lg p-3">
+        <a class="navbar-brand navigating" href="index.php"><img src="img/AX_yellow.png" width="70px" height="auto"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav navigating mx-auto">
+            <li class="nav-item ">
+            <a class="nav-link" aria-current="page" href="join.php">Why Join</a>
+            </li>
+            <li class="nav-item ">
+            <a class="nav-link " aria-current="page" href="branch.php">Our Branches</a>
+            </li>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" value="<?php echo $password?>">
-      </div>
+            <?php
+                if (!isset($_SESSION['customer'])) {
+                    echo "
+                    <li class='nav-item'>
+                    <a class='nav-link' aria-current='page' href='member.php'>Become a Member</a>
+                    </li>
 
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Select Branch</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="selected-branch" value="<?php echo $branch?>">
-        <?php 
-            //Create PHP Code to display categories from Database
-            //1. CReate SQL to get all active categories from database
-            $sql3 = "SELECT * FROM branch";
-            //Executing qUery
-            $res3 = mysqli_query($conn, $sql3);
-            //Count Rows to check whether we have categories or not
-            $count3 = mysqli_num_rows($res3);
-            //IF count is greater than zero, we have categories else we donot have categories
-            if($count3>0)
-            {
-                //WE have categories
-                while($row3=mysqli_fetch_assoc($res3))
-                {
-                    //get the details of categories
-                    $id = $row3['Branch_ID'];
-                    $title = $row3['Branch_location'];
-                    ?>
-                   <option <?php if($current_branch==$id){echo "selected";} ?> value="<?php echo $id; ?>"><?php echo $title; ?></option>
-                    <?php
+                    <li class='nav-item me-5'><a class='nav-link' aria-current='page' href='login.php'>Login</a></li>";
                 }
-            }
-            else
-            {
-                //WE do not have category
-                ?>
-                <option value="0">No Category Found</option>
-                <?php
-            }
-            //2. Display on Drpopdown
-        ?>
-        </select>
+
+                else {
+                    echo "
+                    <li class='nav-item'>
+                    <a class='nav-link' aria-current='page' href='exercises.php'>Exercises</a>
+                    </li>
+
+                    <li class='nav-item'>
+                    <a class='nav-link' aria-current='page' href='profile.php'>Profile</a>
+                    </li>
+
+                    <li class='nav-item me-5'>
+                    <a class='nav-link' aria-current='page' href='logout.php'>Logout</a>
+                    </li>";
+                }
+            ?>
+        </ul>
+        </div>
+    </nav>
+    </header>
+
+		<div class="wrapper" style="background-image: url('img/IN.jpg');">
+			<div class="inner">
+				<div class="image-holder">
+					<img src="img/EditFinal.png" alt="">
+				</div>
+	<form id="regiration_form" action="" method="POST" class="white-text">
+					 <!-- first page -->
+    <fieldset>
+      <div class="form-group">
+          <label for="Customerplan">Customer Plan</label>
+          <select class="form-control" id="Customer_plan" name="Customer_plan">
+            <option value="Monthly">Monthly</option>
+            <option value="Trimonthly">Tri-Monthly</option>
+            <option value="Yearly">Yearly</option>
+          </select>
       </div>
 
-      <div class="form-check">
-        <label>Gender:</label><br>
-        <input class="form-check-input" type="radio" id="male" name="gender" value="male" <?php if ($gender === 'male') echo 'checked'; ?>>
-        <label for="male">Male</label>
-        <br>
-        <input class="form-check-input" type="radio" id="female" name="gender" value="female" <?php if ($gender === 'female') echo 'checked'; ?>>
-        <label for="female">Female</label>
-        <br>
-        <input class="form-check-input" type="radio" id="other" name="gender" value="other" <?php if ($gender === 'male') echo 'other'; ?>>
-        <label for="other">Other</label>
-      </div>
+        <div class="form-group">
+          <input type="text" placeholder="First Name" name="first" class="form-control" value="<?php echo $first_name;?>">
+          <input type="text" placeholder="Last Name" name="last" class="form-control" value="<?php echo $last_name;?>">
+        </div>
 
-      <button type="submit" name="submit" id="submit_data" class="submit btn btn-primary" value="Submit">Submit</button>
-  </fieldset>
-</form>
+        <div class="form-wrapper">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" name="email" placeholder="name@example.com" value="<?php echo $email;?>">
+        </div>
+
+        <div class="form-wrapper">
+          <label for="phone">Enter a phone number:</label>
+          <input type="tel" id="phone" name="phone" placeholder="0900 000 0000" pattern="^09[0-9]{9}$" value="<?php echo $phone?>" required>
+        </div>
+
+        <div class="form-wrapper">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        
+        <div class="form-wrapper">
+          <label for="confirmpassword">Confirm Password</label>
+          <input type="password" class="form-control" name="confirmpassword" placeholder="Password">
+        </div>
+
+        <div class="form-wrapper">
+          <label for="exampleFormControlSelect1">Select Branch</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="selected-branch" value="<?php echo $branch;?>">
+          <?php 
+              //Create PHP Code to display categories from Database
+              //1. CReate SQL to get all active categories from database
+              $sql = "SELECT * FROM branch";
+              
+              //Executing qUery
+              $res = mysqli_query($conn, $sql);
+
+              //Count Rows to check whether we have categories or not
+              $count = mysqli_num_rows($res);
+
+              //IF count is greater than zero, we have categories else we donot have categories
+              if($count>0)
+              {
+                  //WE have categories
+                  while($row=mysqli_fetch_assoc($res))
+                  {
+                      //get the details of categories
+                      $id = $row['Branch_ID'];
+                      $title = $row['Branch_location'];
+                      ?>
+                      <option value="<?php echo $id; ?>"><?php echo $title; ?></option>
+                      <?php
+                  }
+              }
+              else
+              {
+                  //WE do not have category
+                  ?>
+                  <option value="0">No Category Found</option>
+                  <?php
+              }
+              //2. Display on Drpopdown
+          ?>
+          </select>
+        </div>
+
+        <div class="form-check">
+          <label>Gender:</label><br>
+          <input class="form-check-input" type="radio" id="male" name="gender" value="male" <?php if ($gender === 'male') echo 'checked'; ?>>
+          <label for="male">Male</label>
+          <br>
+          <input class="form-check-input" type="radio" id="female" name="gender" value="female" <?php if ($gender === 'female') echo 'checked'; ?>>
+          <label for="female">Female</label>
+          <br>
+          <input class="form-check-input" type="radio" id="other" name="gender" value="other" <?php if ($gender === 'male') echo 'other'; ?>>
+          <label for="other">Other</label>
+        </div>
+
+        <button type="submit" name="submit" id="submit_data" class="submit btn btn-primary" value="Submit">Register<i class="zmdi zmdi-arrow-right"></i></button>
+    </fieldset>
+				</form>
+			</div>
+		</div>
+		
+	</body>
+</html>
+
 
 
 <script type="text/javascript">
@@ -149,7 +244,7 @@ if(isset($_POST["submitmember"])){
     $email = $_POST["email"];
     $phone = $_POST["phone"];
   
-    $password = $_POST["password"];
+    $password = md5($_POST['password']);
   
     $branch = $_POST["selected-branch"];
   

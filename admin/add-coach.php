@@ -8,16 +8,17 @@ if(isset($_POST["submit"])){
     $branch = $_POST["selected-branch"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
-    $password = $_POST["password"];
+    $password = md5($_POST['password']);
     $selectedGender = $_POST["gender"];
-
+    $present = "Checked_out";
     $query = "INSERT INTO coach SET 
             Coach_name='$name',
             branch_ID='$branch',
             Coach_email='$email',
             Coach_no='$phone',
             Coach_gender='$selectedGender',
-            password='$password'
+            password='$password',
+            present = '$present'
     ";
 
     mysqli_query($conn,$query);

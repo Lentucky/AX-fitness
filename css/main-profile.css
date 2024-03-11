@@ -1,0 +1,693 @@
+html,body{
+    height: 100%;
+    font-family: 'Hind', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+
+    background: #444;
+}
+
+
+/* sa register to wag nyo pakielaman */
+#regiration_form fieldset:not(:first-of-type) {
+    display: none;
+}
+
+.hidden{
+    display: none;
+}
+
+.white-text{
+    color: #e5e4e4da;
+}
+
+/* Basic styling for the header */
+header {
+    background-color: #480162;
+    text-align: center;
+    font-family: 'Gill Sans', sans-serif;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav img {
+    margin-left: 10px;
+    height: 50px;
+    width: auto;
+}
+body{
+    background-color: #480162; /* Adjust the color and opacity as needed */
+}
+
+.card {
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+
+
+.nav-links {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.nav-link {
+    color: whitesmoke;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 19px;
+}
+
+.nav-link:hover{
+    color: black;
+}
+
+#login-link {
+    padding: 10px;
+    color: white;
+      text-decoration: none;
+}
+
+
+#login-link:hover{
+    color:black;
+  
+}
+
+h1{
+   color: bisque;
+    font-size: 40px;
+}
+
+/* login stuff */
+.login-container {
+    color:#480162;
+}
+
+.page-header{
+    margin: auto 100px;
+}
+
+
+#login-link {
+    padding: 10px; /* Add some padding so it's not right against the edge */
+}   
+
+body {
+    color: #000; /* Integrated font color */
+    overflow-x: hidden;
+    height: 100%;
+    background-image: linear-gradient(to right, #634883, #7c5aa4);
+    background-repeat: no-repeat;
+}
+
+input, textarea {
+    background-color: #F3E5F5;
+    border-radius: 50px !important;
+    padding: 12px 15px 12px 15px !important;
+    width: 100%;
+    box-sizing: border-box;
+    border: none !important;
+    border: 1px solid #F3E5F5 !important;
+    font-size: 16px !important;
+    color: #000 !important;
+    font-weight: 400;
+}
+
+input:focus, textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #D500F9 !important;
+    outline-width: 0;
+    font-weight: 400;
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+.card {
+    border-radius: 0;
+    border: none;
+}
+
+.card1 {
+    width: 50%;
+    padding: 40px 30px 10px 30px;
+}
+
+
+.form.check.label{
+    font-size: 8px;
+}
+.card2 {
+    width: 50%;
+    background-image: url('../img/DSCF2619.jpg');
+    background-size: cover;
+}
+
+.card4 {
+    width: 50%;
+    background-image: url('../img/DSCF2570.jpg');
+    background-size: cover;
+}
+
+#logo {
+    width: 120px;
+    height: 80px;
+}
+
+.heading {
+    margin-bottom: 60px !important;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::placeholder {
+    color: #000 !important;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #000 !important;
+}
+
+::-ms-input-placeholder {
+    color: #000 !important;
+}
+
+.form-control-label {
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.msg-info {
+    padding-left: 15px;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.select-icon {
+    pointer-events: none; /* Disable pointer events to prevent clicking on the icon */
+    position: absolute; /* Position the icon absolutely */
+    right: 12px; /* Adjust icon position */
+    top: 50%; /* Align icon vertically */
+    transform: translateY(-50%); /* Center the icon vertically */
+    color: #000; /* Adjust icon color */
+}
+
+.btn-color {
+    border-radius: 50px;
+    color: #fff;
+    background-image: linear-gradient(to right, #480162, purple);
+    padding: 15px;
+    cursor: pointer;
+    border: none !important;
+    margin-top: 40px;
+}
+
+.btn-color:hover {
+    color: #fff;
+    background-image: linear-gradient(to right, purple, #480162);
+}
+
+.btn-white {
+    border-radius: 50px;
+    color: #480162;
+    background-color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 2px solid #480162 !important;
+    margin-left: 10px;
+}
+
+.btn-white:hover {
+    color: #fff;
+    background-image: linear-gradient(to right,purple, #D500F9);
+}
+
+a {
+    color: #000;
+}
+
+a:hover {
+    color: #000;
+}
+
+.bottom {
+    width: 100%;
+    margin-top: 50px !important;
+}
+
+.sm-text {
+    font-size: 15px;
+}
+/* main page */
+.banner {
+    background-image: url('../img/try.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 900px;
+    color: #540172;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.banner h1 {
+    font-size: 86px;
+    font-weight: bold;
+    font-family: sans-serif; /* Change font family to sans-serif */
+    margin-right: 500px;
+    margin-top: 90px;
+}
+
+.banner p {
+    font-size: 25px;
+    color:black;
+    font-family: 'Poppins Regular', sans-serif; /* Change font family to Poppins Regular, fallback to sans-serif */
+    margin-right: 500px;
+   margin-bottom: 100px;
+}
+
+/* Custom CSS for the membership section */
+.membership-section {
+    background-color: #a379b2;
+    color: white;
+    padding: 50px;
+}
+
+h1 {
+    font-size: 76px;
+    font-weight: bold;
+    font-family: sans-serif; /* Change font family to sans-serif */
+    margin-right: 500px;
+    color: #540172;
+    margin-bottom: 60px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 60px;
+}
+
+.images img {
+    width: calc(33.333% - 20px);
+    margin-right: 10px;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 470px;
+}
+
+.btn-primary {
+    background-color: transparent; /* Make background color transparent */
+    color: #540172; /* Set text color */
+    border-color: #540172; /* Set border color to match text color */
+}
+.btn-primary:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Change hover background color to black */
+}
+
+
+/* SECOND SECTION/memberships */
+
+.box-content {
+    flex-grow: 1;
+    height: 100%;
+    padding-top: 100%;
+}
+
+.training-plan {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 50px;
+    
+    
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    height: 100px;
+ ; /* Set height to 100% of the viewport height */
+}
+h2{
+    font-size: 70px;
+    font-weight: bold;
+    font-family: sans-serif; /* Change font family to sans-serif */
+    color: #540172;
+    margin-top: 80px;
+}
+
+
+
+.training-box {
+    padding: 50px;
+    border-radius: 0px;
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+    width: calc(33.33% - 20px);
+    height: 30%;
+    background-color: #540172;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.training-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #fdfcfd;
+    font-weight: normal;
+}
+
+.training-box p {
+    font-size: 16px;
+    margin-bottom: 50px;
+    color: white;
+}
+
+
+
+/* Style for the oval-shaped button */
+.btn-custom {
+    background-color: #ff6602;
+    border: none;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 15%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition effect for the border */
+}
+
+.btn-custom:hover {
+    transform: scale(1.2); /* Increase the size by 20% (adjust as needed) */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Add border when button is focused (clicked) */
+.btn-custom:focus {
+    border: 2px solid #540172;
+    outline: none; /* Remove default focus outline */
+}
+
+/* customer reviews section */
+
+.review {
+    background-image: url('../img/try2.jpeg'); /* Set the background color */
+    padding-top: 5rem; /* Adjust top padding */
+    padding-bottom: 5rem; /* Adjust bottom padding */
+    height: 150vh; /* Set a minimum height of 100% viewport height */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    flex: 1; 
+}
+
+.container2 {
+    margin-right: auto; /* Align container to center */
+    margin-left: auto; /* Align container to center */
+    padding-right: 15px; /* Add padding to the right */
+    padding-left: 15px; /* Add padding to the left */
+    height: 100%;
+}
+
+#reviews h2 {
+    margin-bottom: 4rem; /* Adjust margin bottom for the heading */
+    font-size: 100px;
+
+}
+
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.125); /* Add border to the cards */
+    border-radius: 0.20rem; /* Add border radius to the cards */
+    width: 350px;
+    height: 400px;
+margin-top: 150px;
+}
+
+.card-body {
+    padding: 2.25rem; /* Add padding to the card body */
+}
+
+.card-text {
+    margin-bottom: 1rem; /* Adjust margin bottom for the card text */
+}
+
+.text-right {
+    text-align: right; /* Align text to the right */
+}
+
+.font-weight-bold {
+    font-weight: bold; /* Set font weight to bold */
+}
+
+
+
+
+/* Add your custom CSS rules here */
+#why-join {
+    background-color: grey;
+    padding: 20px;
+    text-align: center;
+    font-size: 70px;
+    background-size: cover; /* Ensure the background image covers the entire element */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
+
+}
+
+#why-join h2 {
+    color: #480162;
+}
+
+.card-container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card1 {
+    position: relative; /* Change position to relative */
+    width: 300px; /* Adjust the width as needed */
+    height: 350px; /* Adjust the height as needed */
+    padding: 20px; /* Adjust the padding as needed */
+    background-color: #a379b2;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Added transition property */
+    opacity: 0; /* Initially set opacity to 0 */
+    border-radius: 10px;
+}
+
+.card1.active {
+    opacity: 1; /* Set opacity to 1 for active card */
+}
+.card1:hover {
+    transform: translateY(-5px);
+}
+
+.buttons1 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+/* Apply styles to custom-button */
+.custom-button {
+    background-color: purple; /* Set background color to desired color */
+    color: #fff; /* Set text color to white */
+    border: none; /* Remove border */
+    box-shadow: none; /* Remove box-shadow */
+    width: 80px; /* Set the width */
+    height: 40px;  /* Set the height */
+    border-radius:20px / 50%; /* Set border-radius to create an oval shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px; /* Set the font size */
+}
+.custom-button:hover {
+    background-color: #0056b3; /* Set hover background color */
+}
+
+/* LAST SECTION*/
+.stay-up-to-date {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    height: 50vh;
+    /* Other styles as needed */
+    
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #007bff;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+/* Add hover effect */
+.social-icons a:hover {
+    opacity: 0.7;
+}
+
+/* Set specific colors for each brand */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-messenger {
+    background: #00B2FF;
+    color: white;
+}
+#lasth2{
+    font-size: 24px;
+    color: #540172;
+    margin-bottom: 10px;
+}
+/* main page */
+
+
+/* profile page */
+
+.card-profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #480162;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: .25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: #2f0140;
+}
+
+.white-text{
+    color: #e5e4e4da;
+}
+
+.me-2 {
+    margin-right: .5rem!important;
+}
+
+
+/* our memberships */
+.train-container {
+    display: flex;
+    justify-content: center;
+}
+
+.training {
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 10%;
+}
+
+.training img {
+    width: 100%;
+}
+
+.training-plans {
+    text-align: center;
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: #f9f9f9;
+    margin-top: 20px;
+}
+
+.training-container {
+    padding: 16px;
+    text-align: center;
+    background-color: #480162; /* Change this to the desired color */
+}
+
+.button-container {
+    margin-top: 10px; /* Adjust as needed for spacing */
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Change this to the desired color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn a{
+    text-decoration: none;
+}
+
+/* Clearfix to handle any potential floating issues */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* branches */
+#our-branches {
+    background-color: grey;
+    padding: 20px;
+    text-align: center;
+    font-size: 70px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.branch-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.branch-card {
+    width: 100%;
+    height: 350px;
+    background-color: #a379b2;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.branch-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}

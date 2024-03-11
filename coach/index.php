@@ -19,6 +19,12 @@ if(isset($_SESSION['update-status']))
     unset($_SESSION['update-status']);
 }
 
+if(isset($_SESSION['update-present']))
+{
+    echo $_SESSION['update-present'];
+    unset($_SESSION['update-present']);
+}
+
 $sql2 = "SELECT Branch_location 
         FROM branch
         JOIN coach ON branch.Branch_ID = coach.Branch_ID 
@@ -29,7 +35,7 @@ if ($result2 && mysqli_num_rows($result2) > 0) {
     $row2 = mysqli_fetch_assoc($result2);
     $branchName = $row2['Branch_location'];
 }
-
+//to get the present value in coach
 $sql3 = "SELECT present 
         FROM coach
         WHERE Coach_ID = '" . $_SESSION["coach"] . "' LIMIT 1";
@@ -46,11 +52,17 @@ if ($result3 && mysqli_num_rows($result3) > 0) {
 
 <!-- display the clients scheduled with the coach logged in -->
 <div class="container">
-    <h1>You are currently <?php echo $present?> in your gym.</h1>
-
-    <a href="update-present.php" class="btn btn-success">Log in the gym?</a>
-
-    <a href="update-present.php" class="btn btn-danger">Log out the gym?</a>
+    <h1 class="white-text">You are currently <?php echo $present?> in your gym.</h1>
+    <br>
+    <?php 
+    
+    if($present!="Checked_in")
+        echo "<a href='update-present.php' class='btn btn-success'>Clock in the gym?</a>";
+    else{
+        echo "<a href='update-present.php' class='btn btn-danger'>Clock out the gym?</a>";
+    }
+    ?>
+    <br>
 </div>
 
 <div class="container">
@@ -119,10 +131,23 @@ if ($result3 && mysqli_num_rows($result3) > 0) {
                             <td><?php echo $gender; ?></td>
                             <td><?php echo $plan; ?></td>
                             <td><?php echo $due; ?></td>
-                            <td><?php echo $isPaid; ?></td>
+                            <td>
+                                <?php 
+                                if($isPaid == "Pending") { ?>
+                                    <a class='btn btn-primary' href="update-pending.php?id=<?php echo $customer_id; ?>" role='button'>Pending</a>
+                                <?php } else { ?>
+                                    <?php echo $isPaid; ?>
+                                <?php } ?>
+                            </td>
                             <td>
                                 <a class="btn btn-primary" href="transaction.php?id=<?php echo $customer_id; ?>" role="button">Transaction History</a>
-                                <a class="btn btn-success" href="update-status.php?id=<?php echo $customer_id; ?>" role="button">Update Status</a>
+                                <?php 
+                                if($isPaid == "Unpaid") { ?>
+                                    <a class="btn btn-success" href="update-status.php?id=<?php echo $customer_id; ?>" role="button">Update to Paid</a>
+                                <?php } else { ?>
+                                    <a class="btn btn-danger" href="update-status.php?id=<?php echo $customer_id; ?>" role="button">Update to Unpaid</a>
+                                <?php } ?>
+                                
                             </td>
                         </tr>
 

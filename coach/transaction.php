@@ -24,7 +24,6 @@ include('partials/menu.php');
 //     else
 //     {
 //         echo "<script> alert('No Tansaction history'); </script>";
-//         header('profile.php');
 //     }
 // }
  ?>
@@ -140,8 +139,8 @@ include('partials/menu.php');
                     }
                     else
                     {
-                        header('location: index.php');
-                        echo "<script> alert('No Tansaction history'); </script>";
+                        echo "<script>alert('No Transaction history'); window.location.href='index.php';</script>";
+
                         
                     }
                 }
